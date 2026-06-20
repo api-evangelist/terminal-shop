@@ -1,0 +1,118 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Terminal
+providerId: terminal-shop
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: true
+tags:
+- Coffee
+- E-Commerce
+- Developer
+- SSH
+- Ordering
+- Plans
+description: >-
+  The Terminal Shop API is free to use - there are no API tiers, per-call
+  charges, or subscription fees for accessing the API itself. Any developer
+  can create an account, mint a personal access token, and call every
+  endpoint at no cost. What you pay for is the product: physical coffee.
+  Pricing therefore lives at the product/variant level (returned in cents on
+  each ProductVariant) plus shipping, not in API plans. A dev sandbox
+  (https://api.dev.terminal.shop) lets you place test orders without real
+  charges. Recurring coffee subscriptions are billed per shipment on a fixed
+  or weekly schedule. The plans below model the real economics: a free API
+  access plan and a usage plan for the coffee products purchased through it.
+notes: >-
+  Coffee product prices change with the catalog and by market (NA / EU /
+  global). Live per-variant prices come from GET /product in cents. The API
+  charges nothing for access; only fulfilled coffee orders and their shipping
+  are billed (via Stripe). Verify current product prices against the live
+  catalog or the storefront.
+sources:
+- https://www.terminal.shop
+- https://www.terminal.shop/api
+- https://github.com/terminaldotshop
+plans:
+- id: terminal-api-access
+  name: API Access
+  type: free
+  description: >-
+    Free, unmetered access to the entire Terminal Shop REST API. Create an
+    account, generate a personal access token (or register an OAuth app), and
+    call products, cart, orders, subscriptions, addresses, cards, profile, and
+    token endpoints at no charge.
+  entries:
+  - label: API Access
+    name: api_access
+    type: free
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: Products
+  - name: Cart
+  - name: Orders
+  - name: Subscriptions
+  - name: Addresses & Cards
+  - name: Profile
+  - name: Tokens & Apps
+- id: terminal-products
+  name: Coffee Products
+  type: usage
+  description: >-
+    Pay only for the coffee you order. Each ProductVariant carries a price in
+    US cents; orders are charged that price per unit plus shipping, settled
+    through Stripe. Prices vary by product, variant, and market.
+  entries:
+  - label: Coffee Product (per variant)
+    name: coffee_variant
+    type: usage
+    metric: items
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: per-variant price in cents (see GET /product)
+    userMultiplied: false
+  - label: Shipping
+    name: shipping
+    type: usage
+    metric: orders
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: per-order shipping amount (see order.amount.shipping)
+    userMultiplied: false
+  elements:
+  - name: One-Time Order
+  - name: Cart Checkout
+- id: terminal-subscriptions
+  name: Coffee Subscriptions
+  type: usage
+  description: >-
+    Recurring coffee shipments on a fixed or weekly schedule, billed per
+    shipment at the subscription's product-variant price plus shipping.
+  entries:
+  - label: Subscription Shipment
+    name: subscription_shipment
+    type: usage
+    metric: shipments
+    limit: -1
+    timeFrame: usage
+    geo: global
+    unit: 1
+    price: per-variant price in cents per shipment, plus shipping
+    userMultiplied: false
+  elements:
+  - name: Fixed Schedule
+  - name: Weekly Schedule
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

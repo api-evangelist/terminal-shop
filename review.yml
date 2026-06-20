@@ -1,0 +1,99 @@
+aid: terminal-shop
+name: Terminal
+review:
+  question: Does Terminal expose a documented public WebSocket or streaming API?
+  answer: false
+  date: '2026-06-20'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. Terminal's public API is a plain
+    request/response REST API. There is no documented WebSocket, Server-Sent
+    Events, or other streaming transport. The `ssh terminal.shop` storefront
+    is an interactive SSH TUI, not a documented public streaming API surface,
+    and it is backed by the same REST endpoints modeled in
+    openapi/terminal-shop-openapi.yml.
+findings:
+  summary: |
+    Terminal publishes a public REST API at https://api.terminal.shop (dev
+    sandbox at https://api.dev.terminal.shop) covering products, cart, orders,
+    subscriptions, addresses, cards, profile, tokens, OAuth apps, an email
+    signup, and an aggregate /view/init endpoint - 37 endpoints generated from
+    an OpenAPI spec via Stainless, with official SDKs in Go, JavaScript/
+    TypeScript, Python, Java, Kotlin, and Ruby plus a Terraform provider.
+    Authentication is a Bearer personal access token (trm_live_* / trm_test_*)
+    or OAuth 2.0. No WebSocket (ws:// or wss://) or SSE streaming endpoint is
+    documented. The famous `ssh terminal.shop` ordering experience is an SSH
+    TUI client over the same REST API, not a separate documented protocol.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.terminal.shop
+      documented: true
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.dev.terminal.shop
+      documented: true
+    - protocol: SSH
+      scheme: ssh
+      note: Interactive storefront TUI via `ssh terminal.shop`; client experience backed by the REST API, not a documented machine API surface.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in Terminal's API reference or SDKs as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.terminal.shop/product
+    - GET    https://api.terminal.shop/product/{id}
+    - GET    https://api.terminal.shop/cart
+    - DELETE https://api.terminal.shop/cart
+    - PUT    https://api.terminal.shop/cart/item
+    - PUT    https://api.terminal.shop/cart/address
+    - PUT    https://api.terminal.shop/cart/card
+    - POST   https://api.terminal.shop/cart/convert
+    - GET    https://api.terminal.shop/order
+    - POST   https://api.terminal.shop/order
+    - GET    https://api.terminal.shop/order/{id}
+    - GET    https://api.terminal.shop/subscription
+    - POST   https://api.terminal.shop/subscription
+    - GET    https://api.terminal.shop/subscription/{id}
+    - PUT    https://api.terminal.shop/subscription/{id}
+    - DELETE https://api.terminal.shop/subscription/{id}
+    - GET    https://api.terminal.shop/address
+    - POST   https://api.terminal.shop/address
+    - GET    https://api.terminal.shop/address/{id}
+    - DELETE https://api.terminal.shop/address/{id}
+    - GET    https://api.terminal.shop/card
+    - POST   https://api.terminal.shop/card
+    - POST   https://api.terminal.shop/card/collect
+    - GET    https://api.terminal.shop/card/{id}
+    - DELETE https://api.terminal.shop/card/{id}
+    - GET    https://api.terminal.shop/profile
+    - PUT    https://api.terminal.shop/profile
+    - GET    https://api.terminal.shop/token
+    - POST   https://api.terminal.shop/token
+    - GET    https://api.terminal.shop/token/{id}
+    - DELETE https://api.terminal.shop/token/{id}
+    - GET    https://api.terminal.shop/app
+    - POST   https://api.terminal.shop/app
+    - GET    https://api.terminal.shop/app/{id}
+    - DELETE https://api.terminal.shop/app/{id}
+    - POST   https://api.terminal.shop/email
+    - GET    https://api.terminal.shop/view/init
+sources:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+    note: Public API docs; REST base URL https://api.terminal.shop, Bearer auth, no WebSocket mentioned.
+  - url: https://github.com/terminaldotshop
+    type: GitHub
+    note: Official Stainless-generated SDKs (Go, JS, Python, Java, Kotlin, Ruby) and a Terraform provider.
+  - url: https://github.com/terminaldotshop/terminal-sdk-go
+    type: SDK
+    note: api.md and .stats.yml confirm 37 endpoints across 11 resources from the OpenAPI spec; all HTTPS REST.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No streaming protocol surface exists. The API is request/response REST
+    only, so no AsyncAPI document was authored. apis.yml documents the seven
+    sub-API groupings over the REST surface.

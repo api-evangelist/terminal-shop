@@ -1,0 +1,1638 @@
+{
+  "item": [
+    {
+      "id": "51eb6756-c77d-4110-901f-09759078170c",
+      "name": "Product",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1e9720a-b601-412d-87d4-88cb380872ff",
+          "name": "List all products",
+          "request": {
+            "name": "List all products",
+            "description": {
+              "content": "List all products for sale in the Terminal shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ededf42-b8e6-4ae1-bce5-4fdf72ef210e",
+          "name": "Get product",
+          "request": {
+            "name": "Get product",
+            "description": {
+              "content": "Get a product by ID from the Terminal shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fe0c70ea-dd75-47b8-a0e4-960f71b789bb",
+      "name": "Cart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6732cb2-594d-4189-8b4e-85caf99ce94c",
+          "name": "Get cart",
+          "request": {
+            "name": "Get cart",
+            "description": {
+              "content": "Get the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e78b3dc-fcd1-492f-a9ba-abbb6211e13c",
+          "name": "Clear cart",
+          "request": {
+            "name": "Clear cart",
+            "description": {
+              "content": "Clear the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "986af0ff-b66e-43b4-95ad-c26b970e57a9",
+          "name": "Add or update cart item",
+          "request": {
+            "name": "Add or update cart item",
+            "description": {
+              "content": "Add an item to the cart or update its quantity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "item"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productVariantID\": \"var_XXXX\",\n  \"quantity\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b192cb75-f3de-4978-897e-c85c6bb4f37c",
+          "name": "Set cart shipping address",
+          "request": {
+            "name": "Set cart shipping address",
+            "description": {
+              "content": "Set the shipping address for the cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressID\": \"shp_XXXX\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23dfcbf0-5025-4949-bbc3-7e6dab69a42e",
+          "name": "Set cart payment card",
+          "request": {
+            "name": "Set cart payment card",
+            "description": {
+              "content": "Set the payment card for the cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardID\": \"crd_XXXX\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b38bff9-f129-4af1-a313-ba175626ee14",
+          "name": "Convert cart to order",
+          "request": {
+            "name": "Convert cart to order",
+            "description": {
+              "content": "Convert the cart to an order and place it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8ed718c5-f84c-4c47-a271-f25a40128d8b",
+      "name": "Order",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c38d65ae-fc1b-48ff-8fe5-a41a5d3a8ea5",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "List the orders associated with the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a493405-d010-4990-ad58-7fc093e764f5",
+          "name": "Create order",
+          "request": {
+            "name": "Create order",
+            "description": {
+              "content": "Create an order without a cart; placed immediately.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressID\": \"shp_XXXX\",\n  \"cardID\": \"crd_XXXX\",\n  \"variants\": {\n    \"var_XXXX\": 1\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3f9aba3-939a-42e9-86f7-26882f1d1082",
+          "name": "Get order",
+          "request": {
+            "name": "Get order",
+            "description": {
+              "content": "Get the order with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4f9d6f98-31df-4d95-a228-59becbe174bb",
+      "name": "Subscription",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "459bca7f-b09f-4148-8c07-98352c676d58",
+          "name": "List subscriptions",
+          "request": {
+            "name": "List subscriptions",
+            "description": {
+              "content": "List the subscriptions associated with the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26f9e261-dd08-48e2-9d3c-f78d510e6f04",
+          "name": "Create subscription",
+          "request": {
+            "name": "Create subscription",
+            "description": {
+              "content": "Create a subscription for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscription"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productVariantID\": \"var_XXXX\",\n  \"quantity\": 1,\n  \"addressID\": \"shp_XXXX\",\n  \"cardID\": \"crd_XXXX\",\n  \"schedule\": {\n    \"type\": \"weekly\",\n    \"interval\": 2\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6370ec24-e3ad-4de0-b995-120c62637879",
+          "name": "Get subscription",
+          "request": {
+            "name": "Get subscription",
+            "description": {
+              "content": "Get the subscription with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscription",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9afd0754-01a0-49f9-a11b-71fcaff17836",
+          "name": "Update subscription",
+          "request": {
+            "name": "Update subscription",
+            "description": {
+              "content": "Update the subscription with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscription",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressID\": \"shp_XXXX\",\n  \"cardID\": \"crd_XXXX\",\n  \"schedule\": {\n    \"type\": \"weekly\",\n    \"interval\": 2\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "933e9d01-a62e-41d7-a4d9-4a339387e891",
+          "name": "Cancel subscription",
+          "request": {
+            "name": "Cancel subscription",
+            "description": {
+              "content": "Cancel the subscription with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "subscription",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "3762a7e4-e59c-427b-b284-53fdd52627a1",
+      "name": "Address",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "93781040-502b-4db9-af3d-4134aa542dd6",
+          "name": "List addresses",
+          "request": {
+            "name": "List addresses",
+            "description": {
+              "content": "Get the shipping addresses for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8641737-a925-4c33-9fde-6f3154c1b301",
+          "name": "Create address",
+          "request": {
+            "name": "Create address",
+            "description": {
+              "content": "Create and add a shipping address to the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"street1\": \"1 Main St\",\n  \"city\": \"Austin\",\n  \"province\": \"TX\",\n  \"zip\": \"78701\",\n  \"country\": \"US\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffa03236-d5c3-4270-bfaa-abcda43f91db",
+          "name": "Get address",
+          "request": {
+            "name": "Get address",
+            "description": {
+              "content": "Get the shipping address with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "address",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24aed5e5-5185-4db6-b1e1-8d81cdb380e2",
+          "name": "Delete address",
+          "request": {
+            "name": "Delete address",
+            "description": {
+              "content": "Delete a shipping address from the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "address",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0c8dbf8b-81b1-4f93-af39-47ba52df9206",
+      "name": "Card",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7644683e-f2b2-4cd7-ab12-54768bfc0b64",
+          "name": "List cards",
+          "request": {
+            "name": "List cards",
+            "description": {
+              "content": "List the credit cards for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5925acdb-b489-4d71-b0eb-a6c867eb440c",
+          "name": "Create card",
+          "request": {
+            "name": "Create card",
+            "description": {
+              "content": "Attach a credit card (Stripe token) to the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"tok_XXXX\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00c989f3-c204-49dc-913c-eebd855f1bcf",
+          "name": "Collect card",
+          "request": {
+            "name": "Collect card",
+            "description": {
+              "content": "Create a temporary Stripe-hosted card-collection URL.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                "collect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "11ed4692-2f55-499b-b6d8-44f68027513f",
+          "name": "Get card",
+          "request": {
+            "name": "Get card",
+            "description": {
+              "content": "Get the credit card with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2362cd5-91e5-4037-896c-3d0218c6619a",
+          "name": "Delete card",
+          "request": {
+            "name": "Delete card",
+            "description": {
+              "content": "Delete a credit card associated with the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "card",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "522aac16-12b3-4100-9368-c2886f5b41f1",
+      "name": "Profile",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63b41eb6-8052-4817-852e-c14be01a662b",
+          "name": "Get profile",
+          "request": {
+            "name": "Get profile",
+            "description": {
+              "content": "Get the current user's profile.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "840eebac-e41d-4879-a173-b19b3e542dba",
+          "name": "Update profile",
+          "request": {
+            "name": "Update profile",
+            "description": {
+              "content": "Update the current user's name and email.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6ec4ef57-5f93-433e-8d68-51e660618cc7",
+      "name": "Token",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f14c427-b0e1-4659-9b2a-c14a126d0175",
+          "name": "List tokens",
+          "request": {
+            "name": "List tokens",
+            "description": {
+              "content": "List the personal access tokens for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f17e15d2-f954-4fb7-b318-dedd4e2e18d4",
+          "name": "Create token",
+          "request": {
+            "name": "Create token",
+            "description": {
+              "content": "Create a personal access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5c13c1d-77a2-412e-9a28-0c07f7c9a215",
+          "name": "Get token",
+          "request": {
+            "name": "Get token",
+            "description": {
+              "content": "Get the personal access token with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77c76fc-5598-467c-8138-1672d0ce6cfa",
+          "name": "Delete token",
+          "request": {
+            "name": "Delete token",
+            "description": {
+              "content": "Delete the personal access token with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "token",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aa130a88-da1e-4bf5-9a29-e6c2f13821c4",
+      "name": "App",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51b48462-b102-4c75-96d8-ac47c9a50564",
+          "name": "List apps",
+          "request": {
+            "name": "List apps",
+            "description": {
+              "content": "List the OAuth apps for the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e20765e8-c3c7-4633-9850-85aa82ae1b40",
+          "name": "Create app",
+          "request": {
+            "name": "Create app",
+            "description": {
+              "content": "Create an OAuth app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My App\",\n  \"redirectURI\": \"https://example.com/callback\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68d0fe1f-84a3-4428-b2f0-09b12530279c",
+          "name": "Get app",
+          "request": {
+            "name": "Get app",
+            "description": {
+              "content": "Get the OAuth app with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ab74e3-a75c-4755-9ab4-68ab49428288",
+          "name": "Delete app",
+          "request": {
+            "name": "Delete app",
+            "description": {
+              "content": "Delete the OAuth app with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "app",
+                "{id}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "99a71bae-142e-4577-ab4f-0e2e4fc19c97",
+      "name": "Email",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b7185e1-02d2-4f9b-9a14-683791e15d07",
+          "name": "Subscribe email",
+          "request": {
+            "name": "Subscribe email",
+            "description": {
+              "content": "Subscribe to email updates from Terminal.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "email"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7d7bc1d3-f369-4461-9138-7358d83f1ac7",
+      "name": "View",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3fde5aed-24e4-4d06-b9ba-e3aebe6187af",
+          "name": "Get app data",
+          "request": {
+            "name": "Get app data",
+            "description": {
+              "content": "Get all data needed to render the storefront app.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "view",
+                "init"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.terminal.shop",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c2009660-d3e8-404d-a179-1f98023faf2c",
+    "name": "Terminal Shop API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Terminal, a developer-focused coffee company. Powers the `ssh terminal.shop` storefront.\n\nContact Support:\n Name: Terminal Support\n URL: https://www.terminal.shop",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Terminal
+providerId: terminal-shop
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- Coffee
+- E-Commerce
+- Developer
+- SSH
+- Ordering
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Terminal Shop API does not publish explicit numeric rate limits in its
+  developer documentation. Access is authenticated per account via Bearer
+  personal access tokens or OAuth, and standard abuse-prevention throttling
+  applies. Callers should treat HTTP 429 as a throttling signal, honor any
+  Retry-After header, and back off. Per-account or per-token limits are not
+  reconciled in this artifact.
+notes: >-
+  No documented RPM/RPD/quotas were found in Terminal's public API docs or
+  the Stainless-generated SDKs as of the review date. The SDKs implement
+  automatic retries with backoff for transient failures (including 429),
+  which implies normal rate-limit handling on the server. Verify any limits
+  directly with Terminal if building high-volume integrations.
+sources:
+- https://www.terminal.shop/api
+- https://github.com/terminaldotshop
+- https://github.com/terminaldotshop/terminal-sdk-go
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Account Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No numeric per-account request limit is documented publicly.
+- name: Per-Token Requests
+  scope: token
+  metric: requests
+  limit: see provider documentation
+  notes: Personal access tokens authenticate calls; no documented per-token quota.
+policies:
+- name: Backoff Strategy
+  description: >-
+    Clients should implement exponential backoff with jitter on 429 and 5xx
+    responses and honor Retry-After. Official SDKs retry transient errors
+    automatically.
+- name: Sandbox Isolation
+  description: >-
+    Use the dev sandbox (https://api.dev.terminal.shop) for testing so load
+    testing and retries do not place real coffee orders.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

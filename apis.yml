@@ -1,0 +1,178 @@
+aid: terminal-shop
+url: https://raw.githubusercontent.com/api-evangelist/terminal-shop/refs/heads/main/apis.yml
+name: Terminal
+kind: company
+description: Terminal is a developer-focused coffee company with an API-first, SSH-first
+  ordering experience. The Terminal Shop API is a public REST API (Bearer token) for
+  browsing coffee products, managing carts, placing orders, running subscriptions,
+  and handling addresses, cards, and profiles - the same surface that powers the
+  famous `ssh terminal.shop` storefront.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Coffee
+- E-Commerce
+- Developer
+- SSH
+- Ordering
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: terminal-shop:products
+  name: Terminal Products API
+  tags:
+  - Products
+  - Catalog
+  - Coffee
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: https://www.terminal.shop/api
+    type: APIReference
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Lists Terminal's coffee products and their purchasable variants, with
+    pricing (in cents), market availability, and subscription eligibility.
+- aid: terminal-shop:cart
+  name: Terminal Cart API
+  tags:
+  - Cart
+  - Checkout
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Manages the current user's cart - set item quantities, attach a shipping
+    address and card, clear the cart, and convert it into an order at checkout.
+- aid: terminal-shop:orders
+  name: Terminal Orders API
+  tags:
+  - Orders
+  - Fulfillment
+  - Tracking
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Creates orders directly (bypassing the cart), lists past orders, and
+    retrieves a single order with amounts, line items, shipping, and carrier tracking.
+- aid: terminal-shop:subscriptions
+  name: Terminal Subscriptions API
+  tags:
+  - Subscriptions
+  - Recurring
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Creates and manages recurring coffee subscriptions on fixed or weekly
+    schedules, tied to a product variant, address, and card.
+- aid: terminal-shop:addresses-cards
+  name: Terminal Addresses & Cards API
+  tags:
+  - Addresses
+  - Cards
+  - Payment
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Manages saved shipping addresses and Stripe-tokenized payment cards
+    for the current user, including a hosted card-collection flow.
+- aid: terminal-shop:profile
+  name: Terminal Profile API
+  tags:
+  - Profile
+  - User
+  - Account
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Reads and updates the current user's profile (name and email) and
+    surfaces a single aggregate view of all account state via /view/init.
+- aid: terminal-shop:tokens
+  name: Terminal Tokens & Apps API
+  tags:
+  - Tokens
+  - OAuth
+  - Apps
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.terminal.shop/api
+  baseURL: https://api.terminal.shop
+  properties:
+  - url: https://www.terminal.shop/api
+    type: Documentation
+  - url: openapi/terminal-shop-openapi.yml
+    type: OpenAPI
+  - url: collections/terminal-shop.postman_collection.json
+    type: PostmanCollection
+  - url: collections/terminal-shop.opencollection.json
+    type: OpenCollection
+  description: Manages personal access tokens used as Bearer credentials and registers
+    OAuth apps (client ID/secret and redirect URI) for third-party integrations.
+common:
+- type: GitHubOrganization
+  url: https://github.com/terminaldotshop
+- type: LinkedIn
+  url: https://www.linkedin.com/company/terminalshop
+- type: Website
+  url: https://www.terminal.shop
+- type: Documentation
+  url: https://www.terminal.shop/api
+- type: Plans
+  url: plans/terminal-shop-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/terminal-shop-rate-limits.yml
+- type: FinOps
+  url: finops/terminal-shop-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
