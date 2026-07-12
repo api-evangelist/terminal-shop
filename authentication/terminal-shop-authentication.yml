@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/terminal-shop-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox)
+    or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'
+  sources:
+  - openapi/terminal-shop-openapi.yml

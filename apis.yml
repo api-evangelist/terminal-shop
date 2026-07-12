@@ -159,6 +159,10 @@ apis:
   description: Manages personal access tokens used as Bearer credentials and registers
     OAuth apps (client ID/secret and redirect URI) for third-party integrations.
 common:
+- type: DomainSecurity
+  url: security/terminal-shop-domain-security.yml
+- type: Authentication
+  url: authentication/terminal-shop-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/terminaldotshop
 - type: LinkedIn
