@@ -159,6 +159,8 @@ apis:
   description: Manages personal access tokens used as Bearer credentials and registers
     OAuth apps (client ID/secret and redirect URI) for third-party integrations.
 common:
+- type: AgenticAccess
+  url: agentic-access/terminal-shop-agentic-access.yml
 - type: DomainSecurity
   url: security/terminal-shop-domain-security.yml
 - type: Authentication
