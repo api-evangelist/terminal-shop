@@ -1,0 +1,176 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Address
+paths:
+  /address:
+    get:
+      operationId: listAddresses
+      tags:
+      - Address
+      summary: List addresses
+      description: Get the shipping addresses associated with the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Address'
+    post:
+      operationId: createAddress
+      tags:
+      - Address
+      summary: Create address
+      description: Create and add a shipping address to the current user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+                    description: ID of the created address.
+  /address/{id}:
+    get:
+      operationId: getAddress
+      tags:
+      - Address
+      summary: Get address
+      description: Get the shipping address with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Address'
+    delete:
+      operationId: deleteAddress
+      tags:
+      - Address
+      summary: Delete address
+      description: Delete a shipping address from the current user.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    Address:
+      type: object
+      required:
+      - id
+      - city
+      - country
+      - created
+      - name
+      - street1
+      - zip
+      properties:
+        id:
+          type: string
+        city:
+          type: string
+        country:
+          type: string
+        created:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    AddressInput:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

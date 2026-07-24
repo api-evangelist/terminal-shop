@@ -1,0 +1,230 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address Subscription API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Subscription
+paths:
+  /subscription:
+    get:
+      operationId: listSubscriptions
+      tags:
+      - Subscription
+      summary: List subscriptions
+      description: List the subscriptions associated with the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Subscription'
+    post:
+      operationId: createSubscription
+      tags:
+      - Subscription
+      summary: Create subscription
+      description: Create a subscription for the current user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscriptionInput'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+  /subscription/{id}:
+    get:
+      operationId: getSubscription
+      tags:
+      - Subscription
+      summary: Get subscription
+      description: Get the subscription with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Subscription'
+    put:
+      operationId: updateSubscription
+      tags:
+      - Subscription
+      summary: Update subscription
+      description: Update the subscription with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                addressID:
+                  type: string
+                cardID:
+                  type: string
+                schedule:
+                  $ref: '#/components/schemas/SubscriptionSchedule'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Subscription'
+    delete:
+      operationId: deleteSubscription
+      tags:
+      - Subscription
+      summary: Cancel subscription
+      description: Cancel the subscription with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    SubscriptionSchedule:
+      oneOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - fixed
+          interval:
+            type: integer
+            format: int64
+      - type: object
+        required:
+        - type
+        - interval
+        properties:
+          type:
+            type: string
+            enum:
+            - weekly
+          interval:
+            type: integer
+            format: int64
+            description: Number of weeks between orders.
+    SubscriptionInput:
+      type: object
+      required:
+      - productVariantID
+      - quantity
+      - addressID
+      - cardID
+      properties:
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        addressID:
+          type: string
+        cardID:
+          type: string
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
+    Subscription:
+      type: object
+      required:
+      - id
+      - productVariantID
+      - quantity
+      - addressID
+      - cardID
+      - created
+      - price
+      properties:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        addressID:
+          type: string
+        cardID:
+          type: string
+        created:
+          type: string
+        price:
+          type: integer
+          format: int64
+          description: Price of the subscription line in cents.
+        next:
+          type: string
+          description: Next scheduled order date.
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

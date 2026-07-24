@@ -1,0 +1,183 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address Card API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Card
+paths:
+  /card:
+    get:
+      operationId: listCards
+      tags:
+      - Card
+      summary: List cards
+      description: List the credit cards associated with the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Card'
+    post:
+      operationId: createCard
+      tags:
+      - Card
+      summary: Create card
+      description: Attach a credit card (via a Stripe token) to the current user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - token
+              properties:
+                token:
+                  type: string
+                  description: Stripe card token.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+                    description: ID of the created card.
+  /card/collect:
+    post:
+      operationId: collectCard
+      tags:
+      - Card
+      summary: Collect card
+      description: Create a temporary URL for collecting credit card information on a Stripe-hosted page.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - url
+                    properties:
+                      url:
+                        type: string
+                        format: uri
+                        description: Hosted card-collection URL.
+  /card/{id}:
+    get:
+      operationId: getCard
+      tags:
+      - Card
+      summary: Get card
+      description: Get the credit card with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Card'
+    delete:
+      operationId: deleteCard
+      tags:
+      - Card
+      summary: Delete card
+      description: Delete a credit card associated with the current user.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+components:
+  schemas:
+    CardExpiration:
+      type: object
+      required:
+      - month
+      - year
+      properties:
+        month:
+          type: integer
+          format: int64
+        year:
+          type: integer
+          format: int64
+    Card:
+      type: object
+      required:
+      - id
+      - brand
+      - created
+      - expiration
+      - last4
+      properties:
+        id:
+          type: string
+        brand:
+          type: string
+        created:
+          type: string
+        last4:
+          type: string
+        expiration:
+          $ref: '#/components/schemas/CardExpiration'
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

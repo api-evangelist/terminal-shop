@@ -1,0 +1,105 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address Profile API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Profile
+paths:
+  /profile:
+    get:
+      operationId: getProfile
+      tags:
+      - Profile
+      summary: Get profile
+      description: Get the current user's profile.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Profile'
+    put:
+      operationId: updateProfile
+      tags:
+      - Profile
+      summary: Update profile
+      description: Update the current user's name and email.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - email
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Profile'
+components:
+  schemas:
+    Profile:
+      type: object
+      required:
+      - user
+      properties:
+        user:
+          type: object
+          required:
+          - id
+          - email
+          - fingerprint
+          - name
+          - stripeCustomerID
+          properties:
+            id:
+              type: string
+            email:
+              type: string
+              nullable: true
+            fingerprint:
+              type: string
+              nullable: true
+            name:
+              type: string
+              nullable: true
+            stripeCustomerID:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

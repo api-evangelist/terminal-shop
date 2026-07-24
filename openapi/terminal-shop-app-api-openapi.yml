@@ -1,0 +1,151 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address App API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: App
+paths:
+  /app:
+    get:
+      operationId: listApps
+      tags:
+      - App
+      summary: List apps
+      description: List the OAuth apps associated with the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/App'
+    post:
+      operationId: createApp
+      tags:
+      - App
+      summary: Create app
+      description: Create an OAuth app. The client secret is returned only at creation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - redirectURI
+              properties:
+                name:
+                  type: string
+                redirectURI:
+                  type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: object
+                    required:
+                    - id
+                    - secret
+                    properties:
+                      id:
+                        type: string
+                      secret:
+                        type: string
+  /app/{id}:
+    get:
+      operationId: getApp
+      tags:
+      - App
+      summary: Get app
+      description: Get the OAuth app with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/App'
+    delete:
+      operationId: deleteApp
+      tags:
+      - App
+      summary: Delete app
+      description: Delete the OAuth app with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+components:
+  schemas:
+    App:
+      type: object
+      required:
+      - id
+      - name
+      - redirectURI
+      - secret
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        redirectURI:
+          type: string
+        secret:
+          type: string
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

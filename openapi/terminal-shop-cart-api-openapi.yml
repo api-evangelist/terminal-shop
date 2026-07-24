@@ -1,0 +1,348 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address Cart API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Cart
+paths:
+  /cart:
+    get:
+      operationId: getCart
+      tags:
+      - Cart
+      summary: Get cart
+      description: Get the current user's cart.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Cart'
+    delete:
+      operationId: clearCart
+      tags:
+      - Cart
+      summary: Clear cart
+      description: Clear the current user's cart.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+                    description: Empty string on success.
+  /cart/item:
+    put:
+      operationId: setCartItem
+      tags:
+      - Cart
+      summary: Add or update cart item
+      description: Add an item to the current user's cart, or update its quantity.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - productVariantID
+              - quantity
+              properties:
+                productVariantID:
+                  type: string
+                  description: ID of the product variant to add.
+                quantity:
+                  type: integer
+                  format: int64
+                  description: Quantity of the item. Set to 0 to remove it.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Cart'
+  /cart/address:
+    put:
+      operationId: setCartAddress
+      tags:
+      - Cart
+      summary: Set cart shipping address
+      description: Set the shipping address for the current user's cart.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - addressID
+              properties:
+                addressID:
+                  type: string
+                  description: ID of the saved shipping address.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+  /cart/card:
+    put:
+      operationId: setCartCard
+      tags:
+      - Cart
+      summary: Set cart payment card
+      description: Set the payment card for the current user's cart.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - cardID
+              properties:
+                cardID:
+                  type: string
+                  description: ID of the saved payment card.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+  /cart/convert:
+    post:
+      operationId: convertCart
+      tags:
+      - Cart
+      summary: Convert cart to order
+      description: Convert the current user's cart to an order and place it.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    Order:
+      type: object
+      required:
+      - id
+      - amount
+      - created
+      - items
+      - shipping
+      - tracking
+      properties:
+        id:
+          type: string
+        amount:
+          $ref: '#/components/schemas/OrderAmount'
+        created:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shipping:
+          $ref: '#/components/schemas/OrderShipping'
+        tracking:
+          $ref: '#/components/schemas/OrderTracking'
+        index:
+          type: integer
+          format: int64
+    OrderItem:
+      type: object
+      required:
+      - id
+      - amount
+      - quantity
+      properties:
+        id:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int64
+        description:
+          type: string
+        productVariantID:
+          type: string
+    OrderShipping:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    OrderTracking:
+      type: object
+      properties:
+        number:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
+          type: string
+    Cart:
+      type: object
+      required:
+      - items
+      - subtotal
+      - amount
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+        subtotal:
+          type: integer
+          format: int64
+          description: Subtotal of the items in the cart, in cents.
+        amount:
+          $ref: '#/components/schemas/CartAmount'
+        addressID:
+          type: string
+        cardID:
+          type: string
+        shipping:
+          $ref: '#/components/schemas/CartShipping'
+    CartItem:
+      type: object
+      required:
+      - id
+      - productVariantID
+      - quantity
+      - subtotal
+      properties:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    CartAmount:
+      type: object
+      required:
+      - subtotal
+      properties:
+        subtotal:
+          type: integer
+          format: int64
+        shipping:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    CartShipping:
+      type: object
+      properties:
+        service:
+          type: string
+        timeframe:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'

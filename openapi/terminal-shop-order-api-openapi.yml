@@ -1,0 +1,222 @@
+openapi: 3.0.1
+info:
+  title: Terminal Shop Address Order API
+  description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
+  termsOfService: https://www.terminal.shop/terms
+  contact:
+    name: Terminal Support
+    url: https://www.terminal.shop
+  version: '1.0'
+servers:
+- url: https://api.terminal.shop
+  description: Production
+- url: https://api.dev.terminal.shop
+  description: Dev sandbox (no real charges)
+security:
+- bearerAuth: []
+tags:
+- name: Order
+paths:
+  /order:
+    get:
+      operationId: listOrders
+      tags:
+      - Order
+      summary: List orders
+      description: List the orders associated with the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+    post:
+      operationId: createOrder
+      tags:
+      - Order
+      summary: Create order
+      description: Create an order without a cart. The order is placed immediately using the supplied address, card, and variant quantities.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - addressID
+              - cardID
+              - variants
+              properties:
+                addressID:
+                  type: string
+                  description: ID of the shipping address.
+                cardID:
+                  type: string
+                  description: ID of the payment card.
+                variants:
+                  type: object
+                  description: Map of product variant ID to quantity.
+                  additionalProperties:
+                    type: integer
+                    format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    type: string
+                    description: ID of the created order.
+  /order/{id}:
+    get:
+      operationId: getOrder
+      tags:
+      - Order
+      summary: Get order
+      description: Get the order with the given ID.
+      parameters:
+      - $ref: '#/components/parameters/PathID'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - data
+                properties:
+                  data:
+                    $ref: '#/components/schemas/Order'
+components:
+  schemas:
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    Order:
+      type: object
+      required:
+      - id
+      - amount
+      - created
+      - items
+      - shipping
+      - tracking
+      properties:
+        id:
+          type: string
+        amount:
+          $ref: '#/components/schemas/OrderAmount'
+        created:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shipping:
+          $ref: '#/components/schemas/OrderShipping'
+        tracking:
+          $ref: '#/components/schemas/OrderTracking'
+        index:
+          type: integer
+          format: int64
+    OrderItem:
+      type: object
+      required:
+      - id
+      - amount
+      - quantity
+      properties:
+        id:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int64
+        description:
+          type: string
+        productVariantID:
+          type: string
+    OrderShipping:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    OrderTracking:
+      type: object
+      properties:
+        number:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
+          type: string
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: 'Personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or OAuth 2.0 access token, passed as `Authorization: Bearer <token>`.'
