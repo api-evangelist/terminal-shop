@@ -1,0 +1,34 @@
+{
+  "provider": "terminal-shop",
+  "sources": [
+    "terminal-shop-address-api-openapi.yml",
+    "terminal-shop-app-api-openapi.yml",
+    "terminal-shop-card-api-openapi.yml",
+    "terminal-shop-cart-api-openapi.yml",
+    "terminal-shop-email-api-openapi.yml",
+    "terminal-shop-order-api-openapi.yml",
+    "terminal-shop-product-api-openapi.yml",
+    "terminal-shop-profile-api-openapi.yml",
+    "terminal-shop-subscription-api-openapi.yml",
+    "terminal-shop-token-api-openapi.yml",
+    "terminal-shop-view-api-openapi.yml"
+  ],
+  "outputs": [
+    "terminal-shop-address-api-openapi.yml",
+    "terminal-shop-app-api-openapi.yml",
+    "terminal-shop-card-api-openapi.yml",
+    "terminal-shop-cart-api-openapi.yml",
+    "terminal-shop-email-api-openapi.yml",
+    "terminal-shop-order-api-openapi.yml",
+    "terminal-shop-product-api-openapi.yml",
+    "terminal-shop-profile-api-openapi.yml",
+    "terminal-shop-subscription-api-openapi.yml",
+    "terminal-shop-token-api-openapi.yml",
+    "terminal-shop-view-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
