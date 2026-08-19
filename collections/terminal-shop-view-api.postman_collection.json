@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "e4f700af-6dbf-48ba-9cbd-7817bdad148e",
+      "name": "View",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8802c803-b7fa-439f-bb90-0e41ea2adb66",
+          "name": "Get app data",
+          "request": {
+            "name": "Get app data",
+            "description": {
+              "content": "Get all data needed to render the Terminal storefront app in a single request - region plus the current user's products, profile, addresses, cards, cart, orders, subscriptions, tokens, and apps.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "view",
+                "init"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6aeef3e5-d879-4d15-b746-6fe63ed33ccc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "view",
+                    "init"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"region\": \"na\",\n    \"products\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"variants\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"price\": 4221,\n            \"tags\": {\n              \"key_0\": 815\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"price\": 5302,\n            \"tags\": {\n              \"key_0\": true,\n              \"key_1\": \"string\",\n              \"key_2\": 5593\n            }\n          }\n        ],\n        \"order\": 6697,\n        \"subscription\": \"allowed\",\n        \"tags\": {\n          \"app\": \"string\",\n          \"color\": \"string\",\n          \"featured\": false,\n          \"market_eu\": false,\n          \"market_global\": false,\n          \"market_na\": false\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"variants\": [\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"price\": 8456,\n            \"tags\": {\n              \"key_0\": 659\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"name\": \"string\",\n            \"price\": 7647,\n            \"tags\": {\n              \"key_0\": false,\n              \"key_1\": 5139,\n              \"key_2\": false\n            }\n          }\n        ],\n        \"order\": 7314,\n        \"subscription\": \"allowed\",\n        \"tags\": {\n          \"app\": \"string\",\n          \"color\": \"string\",\n          \"featured\": false,\n          \"market_eu\": true,\n          \"market_global\": true,\n          \"market_na\": true\n        }\n      }\n    ],\n    \"profile\": {\n      \"user\": {\n        \"id\": \"string\",\n        \"email\": \"string\",\n        \"fingerprint\": \"string\",\n        \"name\": \"string\",\n        \"stripeCustomerID\": \"string\"\n      }\n    },\n    \"addresses\": [\n      {\n        \"id\": \"string\",\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"created\": \"string\",\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"zip\": \"string\",\n        \"street2\": \"string\",\n        \"province\": \"string\",\n        \"phone\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"created\": \"string\",\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"zip\": \"string\",\n        \"street2\": \"string\",\n        \"province\": \"string\",\n        \"phone\": \"string\"\n      }\n    ],\n    \"cards\": [\n      {\n        \"id\": \"string\",\n        \"brand\": \"string\",\n        \"created\": \"string\",\n        \"expiration\": {\n          \"month\": 9094,\n          \"year\": 3366\n        },\n        \"last4\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"brand\": \"string\",\n        \"created\": \"string\",\n        \"expiration\": {\n          \"month\": 5099,\n          \"year\": 7409\n        },\n        \"last4\": \"string\"\n      }\n    ],\n    \"cart\": {\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"productVariantID\": \"string\",\n          \"quantity\": 5141,\n          \"subtotal\": 4791\n        },\n        {\n          \"id\": \"string\",\n          \"productVariantID\": \"string\",\n          \"quantity\": 1311,\n          \"subtotal\": 5567\n        }\n      ],\n      \"subtotal\": 286,\n      \"amount\": {\n        \"subtotal\": 251,\n        \"shipping\": 6271,\n        \"total\": 6164\n      },\n      \"addressID\": \"string\",\n      \"cardID\": \"string\",\n      \"shipping\": {\n        \"service\": \"string\",\n        \"timeframe\": \"string\"\n      }\n    },\n    \"orders\": [\n      {\n        \"id\": \"string\",\n        \"amount\": {\n          \"shipping\": 4268,\n          \"subtotal\": 4403\n        },\n        \"created\": \"string\",\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"amount\": 6449,\n            \"quantity\": 2282,\n            \"description\": \"string\",\n            \"productVariantID\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"amount\": 3017,\n            \"quantity\": 7132,\n            \"description\": \"string\",\n            \"productVariantID\": \"string\"\n          }\n        ],\n        \"shipping\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"name\": \"string\",\n          \"street1\": \"string\",\n          \"zip\": \"string\",\n          \"street2\": \"string\",\n          \"province\": \"string\",\n          \"phone\": \"string\"\n        },\n        \"tracking\": {\n          \"number\": \"string\",\n          \"service\": \"string\",\n          \"status\": \"PRE_TRANSIT\",\n          \"statusDetails\": \"string\",\n          \"statusUpdatedAt\": \"string\",\n          \"url\": \"string\"\n        },\n        \"index\": 1851\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": {\n          \"shipping\": 6966,\n          \"subtotal\": 5010\n        },\n        \"created\": \"string\",\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"amount\": 47,\n            \"quantity\": 2091,\n            \"description\": \"string\",\n            \"productVariantID\": \"string\"\n          },\n          {\n            \"id\": \"string\",\n            \"amount\": 9972,\n            \"quantity\": 5153,\n            \"description\": \"string\",\n            \"productVariantID\": \"string\"\n          }\n        ],\n        \"shipping\": {\n          \"city\": \"string\",\n          \"country\": \"string\",\n          \"name\": \"string\",\n          \"street1\": \"string\",\n          \"zip\": \"string\",\n          \"street2\": \"string\",\n          \"province\": \"string\",\n          \"phone\": \"string\"\n        },\n        \"tracking\": {\n          \"number\": \"string\",\n          \"service\": \"string\",\n          \"status\": \"DELIVERED\",\n          \"statusDetails\": \"string\",\n          \"statusUpdatedAt\": \"string\",\n          \"url\": \"string\"\n        },\n        \"index\": 188\n      }\n    ],\n    \"subscriptions\": [\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 9083,\n        \"addressID\": \"string\",\n        \"cardID\": \"string\",\n        \"created\": \"string\",\n        \"price\": 2910,\n        \"next\": \"string\",\n        \"schedule\": {\n          \"type\": \"fixed\",\n          \"interval\": 4852\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 6338,\n        \"addressID\": \"string\",\n        \"cardID\": \"string\",\n        \"created\": \"string\",\n        \"price\": 9237,\n        \"next\": \"string\",\n        \"schedule\": {\n          \"type\": \"fixed\",\n          \"interval\": 1602\n        }\n      }\n    ],\n    \"tokens\": [\n      {\n        \"id\": \"string\",\n        \"token\": \"string\",\n        \"created\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"token\": \"string\",\n        \"created\": \"string\"\n      }\n    ],\n    \"apps\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"redirectURI\": \"string\",\n        \"secret\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"redirectURI\": \"string\",\n        \"secret\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.terminal.shop",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ee5d4d8a-22e7-4f26-87b8-c4b99e5b4b34",
+    "name": "Terminal Shop Address View API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.\n\nContact Support:\n Name: Terminal Support",
+      "type": "text/plain"
+    }
+  }
+}

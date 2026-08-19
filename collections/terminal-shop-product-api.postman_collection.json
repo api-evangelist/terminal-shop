@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "5376bca8-fa4c-468a-89d0-202c80b4acad",
+      "name": "Product",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "377d587c-fe3b-44c3-a767-1057b5435dcd",
+          "name": "List all products",
+          "request": {
+            "name": "List all products",
+            "description": {
+              "content": "List all products for sale in the Terminal shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "61e8b2ae-ef4a-44b1-9e4c-fc83e60981da",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"variants\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"price\": 9895,\n          \"tags\": {\n            \"key_0\": 6862\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"price\": 5934,\n          \"tags\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        }\n      ],\n      \"order\": 7446,\n      \"subscription\": \"required\",\n      \"tags\": {\n        \"app\": \"string\",\n        \"color\": \"string\",\n        \"featured\": false,\n        \"market_eu\": true,\n        \"market_global\": false,\n        \"market_na\": true\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"variants\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"price\": 6751,\n          \"tags\": {\n            \"key_0\": 2760,\n            \"key_1\": 9571.720758618014\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"price\": 5242,\n          \"tags\": {\n            \"key_0\": 6636.122052050966\n          }\n        }\n      ],\n      \"order\": 4919,\n      \"subscription\": \"allowed\",\n      \"tags\": {\n        \"app\": \"string\",\n        \"color\": \"string\",\n        \"featured\": false,\n        \"market_eu\": false,\n        \"market_global\": true,\n        \"market_na\": false\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b4776fe-92f3-4be8-9f87-d18721431985",
+          "name": "Get product",
+          "request": {
+            "name": "Get product",
+            "description": {
+              "content": "Get a product by ID from the Terminal shop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "product",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55889284-4df7-4e5d-a412-3b9b7ec72074",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "product",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"variants\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"price\": 9854,\n        \"tags\": {\n          \"key_0\": 7103.109083944931,\n          \"key_1\": false,\n          \"key_2\": 9435\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"price\": 5114,\n        \"tags\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ],\n    \"order\": 2970,\n    \"subscription\": \"required\",\n    \"tags\": {\n      \"app\": \"string\",\n      \"color\": \"string\",\n      \"featured\": true,\n      \"market_eu\": false,\n      \"market_global\": false,\n      \"market_na\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.terminal.shop",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e8c78a9-9fdc-42dd-971a-c3d15e0aebaf",
+    "name": "Terminal Shop Address Product API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.\n\nContact Support:\n Name: Terminal Support",
+      "type": "text/plain"
+    }
+  }
+}

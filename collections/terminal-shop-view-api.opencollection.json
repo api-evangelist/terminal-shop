@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Terminal Shop Address View API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "View",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get app data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.terminal.shop/view/init"
+          },
+          "docs": "Get all data needed to render the Terminal storefront app in a single request - region plus the current user's products, profile, addresses, cards, cart, orders, subscriptions, tokens, and apps."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

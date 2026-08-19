@@ -1,0 +1,580 @@
+{
+  "item": [
+    {
+      "id": "a418044e-d2cd-44d5-a635-9506e11ca8cb",
+      "name": "Cart",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "04d94534-7ab1-415e-a04d-44fb0dcd7167",
+          "name": "Get cart",
+          "request": {
+            "name": "Get cart",
+            "description": {
+              "content": "Get the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7eb32e76-ff5b-472d-82d2-131ba0853654",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 1849,\n        \"subtotal\": 4563\n      },\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 1570,\n        \"subtotal\": 3244\n      }\n    ],\n    \"subtotal\": 3998,\n    \"amount\": {\n      \"subtotal\": 8777,\n      \"shipping\": 2012,\n      \"total\": 5893\n    },\n    \"addressID\": \"string\",\n    \"cardID\": \"string\",\n    \"shipping\": {\n      \"service\": \"string\",\n      \"timeframe\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e77fecb6-da12-4c76-8533-9ccb6d895835",
+          "name": "Clear cart",
+          "request": {
+            "name": "Clear cart",
+            "description": {
+              "content": "Clear the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67ede0e3-738a-4cca-b41b-62f2794f0455",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2450ae8b-d10e-4005-87fd-38e1bc523651",
+          "name": "Add or update cart item",
+          "request": {
+            "name": "Add or update cart item",
+            "description": {
+              "content": "Add an item to the current user's cart, or update its quantity.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "item"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"productVariantID\": \"<string>\",\n  \"quantity\": \"<long>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1232857c-a6d2-49fb-bacc-97950e3d2672",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "item"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"productVariantID\": \"<string>\",\n  \"quantity\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 8472,\n        \"subtotal\": 4824\n      },\n      {\n        \"id\": \"string\",\n        \"productVariantID\": \"string\",\n        \"quantity\": 9871,\n        \"subtotal\": 9766\n      }\n    ],\n    \"subtotal\": 9576,\n    \"amount\": {\n      \"subtotal\": 1974,\n      \"shipping\": 6629,\n      \"total\": 5302\n    },\n    \"addressID\": \"string\",\n    \"cardID\": \"string\",\n    \"shipping\": {\n      \"service\": \"string\",\n      \"timeframe\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f26f3e88-c227-4016-a905-8b51860a9f30",
+          "name": "Set cart shipping address",
+          "request": {
+            "name": "Set cart shipping address",
+            "description": {
+              "content": "Set the shipping address for the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6fa2f6fe-95da-4470-afe9-e743c8354fa4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addressID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40513168-a30e-41ee-82d8-9ecc4911c450",
+          "name": "Set cart payment card",
+          "request": {
+            "name": "Set cart payment card",
+            "description": {
+              "content": "Set the payment card for the current user's cart.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "card"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cardID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3a884f7-4eb7-4f1d-ba6b-f247852052ca",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "card"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cardID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e5e15cc-5fbc-4dcd-a856-da0d92519a4d",
+          "name": "Convert cart to order",
+          "request": {
+            "name": "Convert cart to order",
+            "description": {
+              "content": "Convert the current user's cart to an order and place it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cart",
+                "convert"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6da79348-aa9f-4996-8256-b3c810927fad",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cart",
+                    "convert"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"amount\": {\n      \"shipping\": 577,\n      \"subtotal\": 4241\n    },\n    \"created\": \"string\",\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 7201,\n        \"quantity\": 3433,\n        \"description\": \"string\",\n        \"productVariantID\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 7315,\n        \"quantity\": 3815,\n        \"description\": \"string\",\n        \"productVariantID\": \"string\"\n      }\n    ],\n    \"shipping\": {\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"name\": \"string\",\n      \"street1\": \"string\",\n      \"zip\": \"string\",\n      \"street2\": \"string\",\n      \"province\": \"string\",\n      \"phone\": \"string\"\n    },\n    \"tracking\": {\n      \"number\": \"string\",\n      \"service\": \"string\",\n      \"status\": \"UNKNOWN\",\n      \"statusDetails\": \"string\",\n      \"statusUpdatedAt\": \"string\",\n      \"url\": \"string\"\n    },\n    \"index\": 6135\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.terminal.shop",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cdb2f9ab-772d-43bb-9926-81da631ebec0",
+    "name": "Terminal Shop Address Cart API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.\n\nContact Support:\n Name: Terminal Support",
+      "type": "text/plain"
+    }
+  }
+}

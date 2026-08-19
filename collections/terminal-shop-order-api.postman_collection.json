@@ -1,0 +1,314 @@
+{
+  "item": [
+    {
+      "id": "931f92bb-d991-4a28-9167-32b0d3f7e2a0",
+      "name": "Order",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b3c6b5aa-160b-4591-af33-70106fe9fb9e",
+          "name": "List orders",
+          "request": {
+            "name": "List orders",
+            "description": {
+              "content": "List the orders associated with the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6ddf935-c37b-40c9-87a6-14f973f2b4b8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"amount\": {\n        \"shipping\": 7565,\n        \"subtotal\": 8019\n      },\n      \"created\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 3929,\n          \"quantity\": 5338,\n          \"description\": \"string\",\n          \"productVariantID\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 5801,\n          \"quantity\": 2817,\n          \"description\": \"string\",\n          \"productVariantID\": \"string\"\n        }\n      ],\n      \"shipping\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"zip\": \"string\",\n        \"street2\": \"string\",\n        \"province\": \"string\",\n        \"phone\": \"string\"\n      },\n      \"tracking\": {\n        \"number\": \"string\",\n        \"service\": \"string\",\n        \"status\": \"PRE_TRANSIT\",\n        \"statusDetails\": \"string\",\n        \"statusUpdatedAt\": \"string\",\n        \"url\": \"string\"\n      },\n      \"index\": 7833\n    },\n    {\n      \"id\": \"string\",\n      \"amount\": {\n        \"shipping\": 7995,\n        \"subtotal\": 9649\n      },\n      \"created\": \"string\",\n      \"items\": [\n        {\n          \"id\": \"string\",\n          \"amount\": 3865,\n          \"quantity\": 5868,\n          \"description\": \"string\",\n          \"productVariantID\": \"string\"\n        },\n        {\n          \"id\": \"string\",\n          \"amount\": 2650,\n          \"quantity\": 3957,\n          \"description\": \"string\",\n          \"productVariantID\": \"string\"\n        }\n      ],\n      \"shipping\": {\n        \"city\": \"string\",\n        \"country\": \"string\",\n        \"name\": \"string\",\n        \"street1\": \"string\",\n        \"zip\": \"string\",\n        \"street2\": \"string\",\n        \"province\": \"string\",\n        \"phone\": \"string\"\n      },\n      \"tracking\": {\n        \"number\": \"string\",\n        \"service\": \"string\",\n        \"status\": \"DELIVERED\",\n        \"statusDetails\": \"string\",\n        \"statusUpdatedAt\": \"string\",\n        \"url\": \"string\"\n      },\n      \"index\": 5423\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "772be544-805b-4beb-94a7-e5a33dc8622a",
+          "name": "Create order",
+          "request": {
+            "name": "Create order",
+            "description": {
+              "content": "Create an order without a cart. The order is placed immediately using the supplied address, card, and variant quantities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"addressID\": \"<string>\",\n  \"cardID\": \"<string>\",\n  \"variants\": {\n    \"key_0\": \"<long>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dbf8e4c2-da43-4eaa-89db-899d985ccc74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"addressID\": \"<string>\",\n  \"cardID\": \"<string>\",\n  \"variants\": {\n    \"key_0\": \"<long>\",\n    \"key_1\": \"<long>\",\n    \"key_2\": \"<long>\",\n    \"key_3\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5dac2bd-655c-4d7e-be82-d7d97ac432e7",
+          "name": "Get order",
+          "request": {
+            "name": "Get order",
+            "description": {
+              "content": "Get the order with the given ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "order",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed95ad2b-16e6-45c7-9585-b2b2a2164751",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "order",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"string\",\n    \"amount\": {\n      \"shipping\": 2281,\n      \"subtotal\": 7174\n    },\n    \"created\": \"string\",\n    \"items\": [\n      {\n        \"id\": \"string\",\n        \"amount\": 4638,\n        \"quantity\": 1247,\n        \"description\": \"string\",\n        \"productVariantID\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"amount\": 2240,\n        \"quantity\": 4853,\n        \"description\": \"string\",\n        \"productVariantID\": \"string\"\n      }\n    ],\n    \"shipping\": {\n      \"city\": \"string\",\n      \"country\": \"string\",\n      \"name\": \"string\",\n      \"street1\": \"string\",\n      \"zip\": \"string\",\n      \"street2\": \"string\",\n      \"province\": \"string\",\n      \"phone\": \"string\"\n    },\n    \"tracking\": {\n      \"number\": \"string\",\n      \"service\": \"string\",\n      \"status\": \"PRE_TRANSIT\",\n      \"statusDetails\": \"string\",\n      \"statusUpdatedAt\": \"string\",\n      \"url\": \"string\"\n    },\n    \"index\": 9788\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.terminal.shop",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "da4246af-7ca5-4d46-a2b3-5a27cbb37571",
+    "name": "Terminal Shop Address Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.\n\nContact Support:\n Name: Terminal Support",
+      "type": "text/plain"
+    }
+  }
+}

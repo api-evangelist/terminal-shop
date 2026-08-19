@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Terminal Shop Address Cart API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cart",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.terminal.shop/cart"
+          },
+          "docs": "Get the current user's cart."
+        },
+        {
+          "info": {
+            "name": "Clear cart",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.terminal.shop/cart"
+          },
+          "docs": "Clear the current user's cart."
+        },
+        {
+          "info": {
+            "name": "Add or update cart item",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.terminal.shop/cart/item",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an item to the current user's cart, or update its quantity."
+        },
+        {
+          "info": {
+            "name": "Set cart shipping address",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.terminal.shop/cart/address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the shipping address for the current user's cart."
+        },
+        {
+          "info": {
+            "name": "Set cart payment card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.terminal.shop/cart/card",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set the payment card for the current user's cart."
+        },
+        {
+          "info": {
+            "name": "Convert cart to order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.terminal.shop/cart/convert"
+          },
+          "docs": "Convert the current user's cart to an order and place it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
