@@ -24,6 +24,12 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/terminal-s
 tags:
 - Coffee
 - E-Commerce
+- Developers
+- SSH
+- Ordering
+tags_raw:
+- Coffee
+- E-Commerce
 - Developer
 - SSH
 - Ordering
@@ -217,6 +223,8 @@ apis:
   humanURL: https://www.terminal.shop/api
   baseURL: https://api.terminal.shop
   tags:
+  - Views
+  tags_raw:
   - View
   properties:
   - type: OpenAPI
