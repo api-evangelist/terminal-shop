@@ -7,6 +7,18 @@ description: Terminal is a developer-focused coffee company with an API-first, S
   browsing coffee products, managing carts, placing orders, running subscriptions,
   and handling addresses, cards, and profiles - the same surface that powers the
   famous `ssh terminal.shop` storefront.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
