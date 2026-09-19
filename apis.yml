@@ -91,6 +91,8 @@ apis:
   humanURL: https://www.terminal.shop/api
   baseURL: https://api.terminal.shop
   tags:
+  - Cards
+  tags_raw:
   - Card
   properties:
   - type: OpenAPI
@@ -181,6 +183,8 @@ apis:
   humanURL: https://www.terminal.shop/api
   baseURL: https://api.terminal.shop
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
@@ -217,6 +221,8 @@ apis:
   humanURL: https://www.terminal.shop/api
   baseURL: https://api.terminal.shop
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
