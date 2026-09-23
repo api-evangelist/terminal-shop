@@ -1,17 +1,7 @@
 {
   "provider": "terminal-shop",
   "sources": [
-    "terminal-shop-address-api-openapi.yml",
-    "terminal-shop-app-api-openapi.yml",
-    "terminal-shop-card-api-openapi.yml",
-    "terminal-shop-cart-api-openapi.yml",
-    "terminal-shop-email-api-openapi.yml",
-    "terminal-shop-order-api-openapi.yml",
-    "terminal-shop-product-api-openapi.yml",
-    "terminal-shop-profile-api-openapi.yml",
-    "terminal-shop-subscription-api-openapi.yml",
-    "terminal-shop-token-api-openapi.yml",
-    "terminal-shop-view-api-openapi.yml"
+    "_original/terminal-shop-openapi.yml"
   ],
   "outputs": [
     "terminal-shop-address-api-openapi.yml",
@@ -29,6 +19,22 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "terminal-shop-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "terminal-shop-address-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-app-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-card-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-cart-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-email-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-order-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-product-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-subscription-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "terminal-shop-view-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

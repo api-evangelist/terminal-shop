@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Terminal Shop Address Order API
+  title: Terminal Shop Order API
   description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
   termsOfService: https://www.terminal.shop/terms
   contact:
@@ -103,45 +103,6 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
-    OrderAmount:
-      type: object
-      required:
-      - shipping
-      - subtotal
-      properties:
-        shipping:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
-    Order:
-      type: object
-      required:
-      - id
-      - amount
-      - created
-      - items
-      - shipping
-      - tracking
-      properties:
-        id:
-          type: string
-        amount:
-          $ref: '#/components/schemas/OrderAmount'
-        created:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderItem'
-        shipping:
-          $ref: '#/components/schemas/OrderShipping'
-        tracking:
-          $ref: '#/components/schemas/OrderTracking'
-        index:
-          type: integer
-          format: int64
     OrderItem:
       type: object
       required:
@@ -186,6 +147,45 @@ components:
           type: string
         phone:
           type: string
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    Order:
+      type: object
+      required:
+      - id
+      - amount
+      - created
+      - items
+      - shipping
+      - tracking
+      properties:
+        id:
+          type: string
+        amount:
+          $ref: '#/components/schemas/OrderAmount'
+        created:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shipping:
+          $ref: '#/components/schemas/OrderShipping'
+        tracking:
+          $ref: '#/components/schemas/OrderTracking'
+        index:
+          type: integer
+          format: int64
     OrderTracking:
       type: object
       properties:

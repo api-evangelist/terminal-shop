@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Terminal Shop Address View API
+  title: Terminal Shop View API
   description: Public REST API for Terminal, a developer-focused coffee company. The API powers product browsing, carts, orders, subscriptions, addresses, cards, profiles, personal access tokens, and OAuth apps - the same surface behind the `ssh terminal.shop` storefront and the official SDKs. All monetary amounts are integers in US cents. Authentication is a Bearer personal access token (`trm_live_*` in production, `trm_test_*` in the dev sandbox) or an OAuth 2.0 access token.
   termsOfService: https://www.terminal.shop/terms
   contact:
@@ -38,79 +38,6 @@ paths:
                     $ref: '#/components/schemas/InitView'
 components:
   schemas:
-    Address:
-      type: object
-      required:
-      - id
-      - city
-      - country
-      - created
-      - name
-      - street1
-      - zip
-      properties:
-        id:
-          type: string
-        city:
-          type: string
-        country:
-          type: string
-        created:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
-    ProductTags:
-      type: object
-      properties:
-        app:
-          type: string
-        color:
-          type: string
-        featured:
-          type: boolean
-        market_eu:
-          type: boolean
-        market_global:
-          type: boolean
-        market_na:
-          type: boolean
-    Profile:
-      type: object
-      required:
-      - user
-      properties:
-        user:
-          type: object
-          required:
-          - id
-          - email
-          - fingerprint
-          - name
-          - stripeCustomerID
-          properties:
-            id:
-              type: string
-            email:
-              type: string
-              nullable: true
-            fingerprint:
-              type: string
-              nullable: true
-            name:
-              type: string
-              nullable: true
-            stripeCustomerID:
-              type: string
     OrderItem:
       type: object
       required:
@@ -130,31 +57,22 @@ components:
           type: string
         productVariantID:
           type: string
-    CartShipping:
-      type: object
-      properties:
-        service:
-          type: string
-        timeframe:
-          type: string
-    ProductVariant:
+    App:
       type: object
       required:
       - id
       - name
-      - price
+      - redirectURI
+      - secret
       properties:
         id:
           type: string
         name:
           type: string
-        price:
-          type: integer
-          format: int64
-          description: Price of the variant in US cents.
-        tags:
-          type: object
-          additionalProperties: true
+        redirectURI:
+          type: string
+        secret:
+          type: string
     CardExpiration:
       type: object
       required:
@@ -167,39 +85,150 @@ components:
         year:
           type: integer
           format: int64
-    Token:
+    Profile:
+      type: object
+      required:
+      - user
+      properties:
+        user:
+          type: object
+          required:
+          - id
+          - email
+          - fingerprint
+          - name
+          - stripeCustomerID
+          properties:
+            id:
+              type: string
+            email:
+              type:
+              - string
+              - 'null'
+            fingerprint:
+              type:
+              - string
+              - 'null'
+            name:
+              type:
+              - string
+              - 'null'
+            stripeCustomerID:
+              type: string
+    CartAmount:
+      type: object
+      required:
+      - subtotal
+      properties:
+        subtotal:
+          type: integer
+          format: int64
+        shipping:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    Order:
       type: object
       required:
       - id
-      - token
+      - amount
       - created
+      - items
+      - shipping
+      - tracking
       properties:
         id:
           type: string
-        token:
-          type: string
-          description: Masked or full token identifier.
+        amount:
+          $ref: '#/components/schemas/OrderAmount'
         created:
           type: string
-    Card:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        shipping:
+          $ref: '#/components/schemas/OrderShipping'
+        tracking:
+          $ref: '#/components/schemas/OrderTracking'
+        index:
+          type: integer
+          format: int64
+    SubscriptionSchedule:
+      oneOf:
+      - type: object
+        required:
+        - type
+        properties:
+          type:
+            type: string
+            enum:
+            - fixed
+          interval:
+            type: integer
+            format: int64
+      - type: object
+        required:
+        - type
+        - interval
+        properties:
+          type:
+            type: string
+            enum:
+            - weekly
+          interval:
+            type: integer
+            format: int64
+            description: Number of weeks between orders.
+    OrderTracking:
+      type: object
+      properties:
+        number:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
+          type: string
+    CartShipping:
+      type: object
+      properties:
+        service:
+          type: string
+        timeframe:
+          type: string
+    CartItem:
       type: object
       required:
       - id
-      - brand
-      - created
-      - expiration
-      - last4
+      - productVariantID
+      - quantity
+      - subtotal
       properties:
         id:
           type: string
-        brand:
+        productVariantID:
           type: string
-        created:
-          type: string
-        last4:
-          type: string
-        expiration:
-          $ref: '#/components/schemas/CardExpiration'
+        quantity:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
     Product:
       type: object
       required:
@@ -230,44 +259,39 @@ components:
           description: Whether subscriptions are allowed or required for this product.
         tags:
           $ref: '#/components/schemas/ProductTags'
-    OrderAmount:
+    Subscription:
       type: object
       required:
-      - shipping
-      - subtotal
+      - id
+      - productVariantID
+      - quantity
+      - addressID
+      - cardID
+      - created
+      - price
       properties:
-        shipping:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
           type: integer
           format: int64
-        subtotal:
+        addressID:
+          type: string
+        cardID:
+          type: string
+        created:
+          type: string
+        price:
           type: integer
           format: int64
-    SubscriptionSchedule:
-      oneOf:
-      - type: object
-        required:
-        - type
-        properties:
-          type:
-            type: string
-            enum:
-            - fixed
-          interval:
-            type: integer
-            format: int64
-      - type: object
-        required:
-        - type
-        - interval
-        properties:
-          type:
-            type: string
-            enum:
-            - weekly
-          interval:
-            type: integer
-            format: int64
-            description: Number of weeks between orders.
+          description: Price of the subscription line in cents.
+        next:
+          type: string
+          description: Next scheduled order date.
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
     InitView:
       type: object
       required:
@@ -319,39 +343,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/App'
-    Subscription:
+    Token:
       type: object
       required:
       - id
-      - productVariantID
-      - quantity
-      - addressID
-      - cardID
+      - token
       - created
+      properties:
+        id:
+          type: string
+        token:
+          type: string
+          description: Masked or full token identifier.
+        created:
+          type: string
+    ProductVariant:
+      type: object
+      required:
+      - id
+      - name
       - price
       properties:
         id:
           type: string
-        productVariantID:
-          type: string
-        quantity:
-          type: integer
-          format: int64
-        addressID:
-          type: string
-        cardID:
-          type: string
-        created:
+        name:
           type: string
         price:
           type: integer
           format: int64
-          description: Price of the subscription line in cents.
-        next:
-          type: string
-          description: Next scheduled order date.
-        schedule:
-          $ref: '#/components/schemas/SubscriptionSchedule'
+          description: Price of the variant in US cents.
+        tags:
+          type: object
+          additionalProperties: true
     OrderShipping:
       type: object
       required:
@@ -377,71 +400,16 @@ components:
           type: string
         phone:
           type: string
-    OrderTracking:
-      type: object
-      properties:
-        number:
-          type: string
-        service:
-          type: string
-        status:
-          type: string
-          enum:
-          - PRE_TRANSIT
-          - TRANSIT
-          - DELIVERED
-          - RETURNED
-          - FAILURE
-          - UNKNOWN
-        statusDetails:
-          type: string
-        statusUpdatedAt:
-          type: string
-        url:
-          type: string
-    CartItem:
+    OrderAmount:
       type: object
       required:
-      - id
-      - productVariantID
-      - quantity
+      - shipping
       - subtotal
       properties:
-        id:
-          type: string
-        productVariantID:
-          type: string
-        quantity:
+        shipping:
           type: integer
           format: int64
         subtotal:
-          type: integer
-          format: int64
-    Order:
-      type: object
-      required:
-      - id
-      - amount
-      - created
-      - items
-      - shipping
-      - tracking
-      properties:
-        id:
-          type: string
-        amount:
-          $ref: '#/components/schemas/OrderAmount'
-        created:
-          type: string
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrderItem'
-        shipping:
-          $ref: '#/components/schemas/OrderShipping'
-        tracking:
-          $ref: '#/components/schemas/OrderTracking'
-        index:
           type: integer
           format: int64
     Cart:
@@ -467,36 +435,71 @@ components:
           type: string
         shipping:
           $ref: '#/components/schemas/CartShipping'
-    App:
+    Address:
       type: object
       required:
       - id
+      - city
+      - country
+      - created
       - name
-      - redirectURI
-      - secret
+      - street1
+      - zip
       properties:
         id:
           type: string
+        city:
+          type: string
+        country:
+          type: string
+        created:
+          type: string
         name:
           type: string
-        redirectURI:
+        street1:
           type: string
-        secret:
+        street2:
           type: string
-    CartAmount:
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    ProductTags:
+      type: object
+      properties:
+        app:
+          type: string
+        color:
+          type: string
+        featured:
+          type: boolean
+        market_eu:
+          type: boolean
+        market_global:
+          type: boolean
+        market_na:
+          type: boolean
+    Card:
       type: object
       required:
-      - subtotal
+      - id
+      - brand
+      - created
+      - expiration
+      - last4
       properties:
-        subtotal:
-          type: integer
-          format: int64
-        shipping:
-          type: integer
-          format: int64
-        total:
-          type: integer
-          format: int64
+        id:
+          type: string
+        brand:
+          type: string
+        created:
+          type: string
+        last4:
+          type: string
+        expiration:
+          $ref: '#/components/schemas/CardExpiration'
   securitySchemes:
     bearerAuth:
       type: http
