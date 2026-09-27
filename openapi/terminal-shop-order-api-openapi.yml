@@ -103,49 +103,27 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
-    OrderItem:
+    OrderTracking:
       type: object
-      required:
-      - id
-      - amount
-      - quantity
       properties:
-        id:
+        number:
           type: string
-        amount:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int64
-        description:
+        service:
           type: string
-        productVariantID:
+        status:
           type: string
-    OrderShipping:
-      type: object
-      required:
-      - city
-      - country
-      - name
-      - street1
-      - zip
-      properties:
-        city:
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
           type: string
-        country:
+        statusUpdatedAt:
           type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
+        url:
           type: string
     OrderAmount:
       type: object
@@ -186,27 +164,49 @@ components:
         index:
           type: integer
           format: int64
-    OrderTracking:
+    OrderShipping:
       type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
       properties:
-        number:
+        city:
           type: string
-        service:
+        country:
           type: string
-        status:
+        name:
           type: string
-          enum:
-          - PRE_TRANSIT
-          - TRANSIT
-          - DELIVERED
-          - RETURNED
-          - FAILURE
-          - UNKNOWN
-        statusDetails:
+        street1:
           type: string
-        statusUpdatedAt:
+        street2:
           type: string
-        url:
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    OrderItem:
+      type: object
+      required:
+      - id
+      - amount
+      - quantity
+      properties:
+        id:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int64
+        description:
+          type: string
+        productVariantID:
           type: string
   parameters:
     PathID:

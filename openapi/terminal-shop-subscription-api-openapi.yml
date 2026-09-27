@@ -138,6 +138,25 @@ paths:
                     type: string
 components:
   schemas:
+    SubscriptionInput:
+      type: object
+      required:
+      - productVariantID
+      - quantity
+      - addressID
+      - cardID
+      properties:
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        addressID:
+          type: string
+        cardID:
+          type: string
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
     SubscriptionSchedule:
       oneOf:
       - type: object
@@ -164,25 +183,6 @@ components:
             type: integer
             format: int64
             description: Number of weeks between orders.
-    SubscriptionInput:
-      type: object
-      required:
-      - productVariantID
-      - quantity
-      - addressID
-      - cardID
-      properties:
-        productVariantID:
-          type: string
-        quantity:
-          type: integer
-          format: int64
-        addressID:
-          type: string
-        cardID:
-          type: string
-        schedule:
-          $ref: '#/components/schemas/SubscriptionSchedule'
     Subscription:
       type: object
       required:
