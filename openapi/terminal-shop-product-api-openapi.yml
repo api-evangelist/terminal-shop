@@ -61,24 +61,6 @@ paths:
                     $ref: '#/components/schemas/Product'
 components:
   schemas:
-    ProductVariant:
-      type: object
-      required:
-      - id
-      - name
-      - price
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        price:
-          type: integer
-          format: int64
-          description: Price of the variant in US cents.
-        tags:
-          type: object
-          additionalProperties: true
     Product:
       type: object
       required:
@@ -124,6 +106,24 @@ components:
           type: boolean
         market_na:
           type: boolean
+    ProductVariant:
+      type: object
+      required:
+      - id
+      - name
+      - price
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+          format: int64
+          description: Price of the variant in US cents.
+        tags:
+          type: object
+          additionalProperties: true
   parameters:
     PathID:
       name: id

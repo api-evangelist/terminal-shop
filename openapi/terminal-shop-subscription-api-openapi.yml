@@ -138,25 +138,6 @@ paths:
                     type: string
 components:
   schemas:
-    SubscriptionInput:
-      type: object
-      required:
-      - productVariantID
-      - quantity
-      - addressID
-      - cardID
-      properties:
-        productVariantID:
-          type: string
-        quantity:
-          type: integer
-          format: int64
-        addressID:
-          type: string
-        cardID:
-          type: string
-        schedule:
-          $ref: '#/components/schemas/SubscriptionSchedule'
     SubscriptionSchedule:
       oneOf:
       - type: object
@@ -214,6 +195,25 @@ components:
         next:
           type: string
           description: Next scheduled order date.
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
+    SubscriptionInput:
+      type: object
+      required:
+      - productVariantID
+      - quantity
+      - addressID
+      - cardID
+      properties:
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        addressID:
+          type: string
+        cardID:
+          type: string
         schedule:
           $ref: '#/components/schemas/SubscriptionSchedule'
   parameters:

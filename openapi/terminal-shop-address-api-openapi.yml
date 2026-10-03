@@ -105,39 +105,7 @@ paths:
                   data:
                     type: string
 components:
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    AddressInput:
-      type: object
-      required:
-      - city
-      - country
-      - name
-      - street1
-      - zip
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
     Address:
       type: object
       required:
@@ -169,6 +137,38 @@ components:
           type: string
         phone:
           type: string
+    AddressInput:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

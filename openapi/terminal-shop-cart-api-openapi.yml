@@ -174,38 +174,6 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
-    CartItem:
-      type: object
-      required:
-      - id
-      - productVariantID
-      - quantity
-      - subtotal
-      properties:
-        id:
-          type: string
-        productVariantID:
-          type: string
-        quantity:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
-    CartAmount:
-      type: object
-      required:
-      - subtotal
-      properties:
-        subtotal:
-          type: integer
-          format: int64
-        shipping:
-          type: integer
-          format: int64
-        total:
-          type: integer
-          format: int64
     OrderTracking:
       type: object
       properties:
@@ -228,18 +196,6 @@ components:
           type: string
         url:
           type: string
-    OrderAmount:
-      type: object
-      required:
-      - shipping
-      - subtotal
-      properties:
-        shipping:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
     Order:
       type: object
       required:
@@ -267,13 +223,18 @@ components:
         index:
           type: integer
           format: int64
-    CartShipping:
+    OrderAmount:
       type: object
+      required:
+      - shipping
+      - subtotal
       properties:
-        service:
-          type: string
-        timeframe:
-          type: string
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
     OrderShipping:
       type: object
       required:
@@ -299,25 +260,6 @@ components:
           type: string
         phone:
           type: string
-    OrderItem:
-      type: object
-      required:
-      - id
-      - amount
-      - quantity
-      properties:
-        id:
-          type: string
-        amount:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int64
-        description:
-          type: string
-        productVariantID:
-          type: string
     Cart:
       type: object
       required:
@@ -341,6 +283,64 @@ components:
           type: string
         shipping:
           $ref: '#/components/schemas/CartShipping'
+    CartAmount:
+      type: object
+      required:
+      - subtotal
+      properties:
+        subtotal:
+          type: integer
+          format: int64
+        shipping:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    CartShipping:
+      type: object
+      properties:
+        service:
+          type: string
+        timeframe:
+          type: string
+    OrderItem:
+      type: object
+      required:
+      - id
+      - amount
+      - quantity
+      properties:
+        id:
+          type: string
+        amount:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int64
+        description:
+          type: string
+        productVariantID:
+          type: string
+    CartItem:
+      type: object
+      required:
+      - id
+      - productVariantID
+      - quantity
+      - subtotal
+      properties:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
   securitySchemes:
     bearerAuth:
       type: http

@@ -125,18 +125,6 @@ components:
           type: string
         url:
           type: string
-    OrderAmount:
-      type: object
-      required:
-      - shipping
-      - subtotal
-      properties:
-        shipping:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
     Order:
       type: object
       required:
@@ -162,6 +150,18 @@ components:
         tracking:
           $ref: '#/components/schemas/OrderTracking'
         index:
+          type: integer
+          format: int64
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
           type: integer
           format: int64
     OrderShipping:
