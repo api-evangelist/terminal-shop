@@ -1,0 +1,49 @@
+slug: terminal-shop
+provider: Terminal
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 3
+edges:
+- tag: App
+  spec_file: terminal-shop-app-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: '"The API powers ... personal access tokens, and OAuth apps"; "POST /app createApp Create
+    app"'
+  reason: The App resource is the OAuth client registration for developers building against the public
+    Terminal API, matching Developer Identity & Credential Management ("issuance and stewardship of developer
+    credentials, OAuth clients"). Slight residual ambiguity because the operations themselves only say
+    "app".
+- tag: Subscription
+  spec_file: terminal-shop-subscription-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: '"POST /subscription createSubscription Create subscription"; "DELETE /subscription/{id} deleteSubscription
+    Cancel subscription"; schema "SubscriptionSchedule"'
+  reason: Full create/modify/cancel lifecycle of recurring subscriptions, which is Subscription Lifecycle
+    Management even though the subscribed item is coffee rather than software. L2 left null because the
+    operations span provisioning, modification and cancellation equally.
+- tag: Token
+  spec_file: terminal-shop-token-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.7
+  evidence: '"Authentication is a Bearer personal access token (`trm_live_*` ...)"; "POST /token createToken
+    Create token"'
+  reason: Issuance and revocation of personal access tokens used by developers against the public API
+    maps to Developer Identity & Credential Management. Could alternatively be read as generic IAM, hence
+    not higher than 0.7.

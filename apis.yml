@@ -256,6 +256,9 @@ apis:
   - type: OpenCollection
     url: collections/terminal-shop.opencollection.json
 common:
+- type: CapabilityMap
+  url: capabilities/terminal-shop-capability-edges.yml
+  name: Terminal Business Capability Map
 - type: AgenticAccess
   url: agentic-access/terminal-shop-agentic-access.yml
 - type: DomainSecurity
