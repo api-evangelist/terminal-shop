@@ -61,6 +61,39 @@ paths:
                     $ref: '#/components/schemas/Product'
 components:
   schemas:
+    ProductVariant:
+      type: object
+      required:
+      - id
+      - name
+      - price
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        price:
+          type: integer
+          format: int64
+          description: Price of the variant in US cents.
+        tags:
+          type: object
+          additionalProperties: true
+    ProductTags:
+      type: object
+      properties:
+        app:
+          type: string
+        color:
+          type: string
+        featured:
+          type: boolean
+        market_eu:
+          type: boolean
+        market_global:
+          type: boolean
+        market_na:
+          type: boolean
     Product:
       type: object
       required:
@@ -91,39 +124,6 @@ components:
           description: Whether subscriptions are allowed or required for this product.
         tags:
           $ref: '#/components/schemas/ProductTags'
-    ProductTags:
-      type: object
-      properties:
-        app:
-          type: string
-        color:
-          type: string
-        featured:
-          type: boolean
-        market_eu:
-          type: boolean
-        market_global:
-          type: boolean
-        market_na:
-          type: boolean
-    ProductVariant:
-      type: object
-      required:
-      - id
-      - name
-      - price
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        price:
-          type: integer
-          format: int64
-          description: Price of the variant in US cents.
-        tags:
-          type: object
-          additionalProperties: true
   parameters:
     PathID:
       name: id

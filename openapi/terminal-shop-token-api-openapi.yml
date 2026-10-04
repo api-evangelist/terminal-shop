@@ -107,13 +107,6 @@ paths:
                   data:
                     type: string
 components:
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     Token:
       type: object
@@ -129,6 +122,13 @@ components:
           description: Masked or full token identifier.
         created:
           type: string
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     bearerAuth:
       type: http

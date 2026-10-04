@@ -103,28 +103,6 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
-    OrderTracking:
-      type: object
-      properties:
-        number:
-          type: string
-        service:
-          type: string
-        status:
-          type: string
-          enum:
-          - PRE_TRANSIT
-          - TRANSIT
-          - DELIVERED
-          - RETURNED
-          - FAILURE
-          - UNKNOWN
-        statusDetails:
-          type: string
-        statusUpdatedAt:
-          type: string
-        url:
-          type: string
     Order:
       type: object
       required:
@@ -152,18 +130,28 @@ components:
         index:
           type: integer
           format: int64
-    OrderAmount:
+    OrderTracking:
       type: object
-      required:
-      - shipping
-      - subtotal
       properties:
-        shipping:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
+        number:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
+          type: string
     OrderShipping:
       type: object
       required:
@@ -189,6 +177,18 @@ components:
           type: string
         phone:
           type: string
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
     OrderItem:
       type: object
       required:

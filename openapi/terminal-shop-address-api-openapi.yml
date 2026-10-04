@@ -106,6 +106,31 @@ paths:
                     type: string
 components:
   schemas:
+    AddressInput:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
     Address:
       type: object
       required:
@@ -124,31 +149,6 @@ components:
         country:
           type: string
         created:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
-    AddressInput:
-      type: object
-      required:
-      - city
-      - country
-      - name
-      - street1
-      - zip
-      properties:
-        city:
-          type: string
-        country:
           type: string
         name:
           type: string
