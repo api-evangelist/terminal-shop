@@ -1,0 +1,18 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/terminal-shop/integrations
+- https://zapier.com/apps/terminal/integrations
+- https://n8n.io/integrations/terminal-shop/
+- https://composio.dev/toolkits/terminal-shop
+- https://monid.ai/tools/terminal-shop
+checked:
+- https://composio.dev/toolkits/terminal-shop
+- https://monid.ai/tools/terminal-shop
+- https://n8n.io/integrations/terminal-shop/
+- https://zapier.com/apps/terminal-shop/integrations
+- https://zapier.com/apps/terminal/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
