@@ -105,6 +105,13 @@ paths:
                   data:
                     type: string
 components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     AddressInput:
       type: object
@@ -162,13 +169,6 @@ components:
           type: string
         phone:
           type: string
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

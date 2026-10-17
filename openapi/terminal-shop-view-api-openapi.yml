@@ -38,118 +38,54 @@ paths:
                     $ref: '#/components/schemas/InitView'
 components:
   schemas:
-    Profile:
+    CardExpiration:
       type: object
       required:
-      - user
+      - month
+      - year
       properties:
-        user:
-          type: object
-          required:
-          - id
-          - email
-          - fingerprint
-          - name
-          - stripeCustomerID
-          properties:
-            id:
-              type: string
-            email:
-              type:
-              - string
-              - 'null'
-            fingerprint:
-              type:
-              - string
-              - 'null'
-            name:
-              type:
-              - string
-              - 'null'
-            stripeCustomerID:
-              type: string
-    Address:
+        month:
+          type: integer
+          format: int64
+        year:
+          type: integer
+          format: int64
+    ProductVariant:
       type: object
       required:
       - id
-      - city
-      - country
-      - created
       - name
-      - street1
-      - zip
+      - price
       properties:
         id:
           type: string
-        city:
-          type: string
-        country:
-          type: string
-        created:
-          type: string
         name:
           type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
-    CartShipping:
-      type: object
-      properties:
-        service:
-          type: string
-        timeframe:
-          type: string
-    Cart:
-      type: object
-      required:
-      - items
-      - subtotal
-      - amount
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CartItem'
-        subtotal:
+        price:
           type: integer
           format: int64
-          description: Subtotal of the items in the cart, in cents.
-        amount:
-          $ref: '#/components/schemas/CartAmount'
-        addressID:
-          type: string
-        cardID:
-          type: string
-        shipping:
-          $ref: '#/components/schemas/CartShipping'
-    OrderTracking:
+          description: Price of the variant in US cents.
+        tags:
+          type: object
+          additionalProperties: true
+    OrderItem:
       type: object
+      required:
+      - id
+      - amount
+      - quantity
       properties:
-        number:
+        id:
           type: string
-        service:
+        amount:
+          type: integer
+          format: int64
+        quantity:
+          type: integer
+          format: int64
+        description:
           type: string
-        status:
-          type: string
-          enum:
-          - PRE_TRANSIT
-          - TRANSIT
-          - DELIVERED
-          - RETURNED
-          - FAILURE
-          - UNKNOWN
-        statusDetails:
-          type: string
-        statusUpdatedAt:
-          type: string
-        url:
+        productVariantID:
           type: string
     Product:
       type: object
@@ -181,65 +117,6 @@ components:
           description: Whether subscriptions are allowed or required for this product.
         tags:
           $ref: '#/components/schemas/ProductTags'
-    ProductVariant:
-      type: object
-      required:
-      - id
-      - name
-      - price
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        price:
-          type: integer
-          format: int64
-          description: Price of the variant in US cents.
-        tags:
-          type: object
-          additionalProperties: true
-    OrderShipping:
-      type: object
-      required:
-      - city
-      - country
-      - name
-      - street1
-      - zip
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
-    App:
-      type: object
-      required:
-      - id
-      - name
-      - redirectURI
-      - secret
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        redirectURI:
-          type: string
-        secret:
-          type: string
     Token:
       type: object
       required:
@@ -254,39 +131,37 @@ components:
           description: Masked or full token identifier.
         created:
           type: string
-    Card:
+    Address:
       type: object
       required:
       - id
-      - brand
+      - city
+      - country
       - created
-      - expiration
-      - last4
+      - name
+      - street1
+      - zip
       properties:
         id:
           type: string
-        brand:
+        city:
+          type: string
+        country:
           type: string
         created:
           type: string
-        last4:
+        name:
           type: string
-        expiration:
-          $ref: '#/components/schemas/CardExpiration'
-    CartAmount:
-      type: object
-      required:
-      - subtotal
-      properties:
-        subtotal:
-          type: integer
-          format: int64
-        shipping:
-          type: integer
-          format: int64
-        total:
-          type: integer
-          format: int64
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
     Order:
       type: object
       required:
@@ -314,6 +189,87 @@ components:
         index:
           type: integer
           format: int64
+    CartAmount:
+      type: object
+      required:
+      - subtotal
+      properties:
+        subtotal:
+          type: integer
+          format: int64
+        shipping:
+          type: integer
+          format: int64
+        total:
+          type: integer
+          format: int64
+    Card:
+      type: object
+      required:
+      - id
+      - brand
+      - created
+      - expiration
+      - last4
+      properties:
+        id:
+          type: string
+        brand:
+          type: string
+        created:
+          type: string
+        last4:
+          type: string
+        expiration:
+          $ref: '#/components/schemas/CardExpiration'
+    Cart:
+      type: object
+      required:
+      - items
+      - subtotal
+      - amount
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+        subtotal:
+          type: integer
+          format: int64
+          description: Subtotal of the items in the cart, in cents.
+        amount:
+          $ref: '#/components/schemas/CartAmount'
+        addressID:
+          type: string
+        cardID:
+          type: string
+        shipping:
+          $ref: '#/components/schemas/CartShipping'
+    OrderShipping:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
     SubscriptionSchedule:
       oneOf:
       - type: object
@@ -340,39 +296,36 @@ components:
             type: integer
             format: int64
             description: Number of weeks between orders.
-    Subscription:
+    Profile:
       type: object
       required:
-      - id
-      - productVariantID
-      - quantity
-      - addressID
-      - cardID
-      - created
-      - price
+      - user
       properties:
-        id:
-          type: string
-        productVariantID:
-          type: string
-        quantity:
-          type: integer
-          format: int64
-        addressID:
-          type: string
-        cardID:
-          type: string
-        created:
-          type: string
-        price:
-          type: integer
-          format: int64
-          description: Price of the subscription line in cents.
-        next:
-          type: string
-          description: Next scheduled order date.
-        schedule:
-          $ref: '#/components/schemas/SubscriptionSchedule'
+        user:
+          type: object
+          required:
+          - id
+          - email
+          - fingerprint
+          - name
+          - stripeCustomerID
+          properties:
+            id:
+              type: string
+            email:
+              type:
+              - string
+              - 'null'
+            fingerprint:
+              type:
+              - string
+              - 'null'
+            name:
+              type:
+              - string
+              - 'null'
+            stripeCustomerID:
+              type: string
     ProductTags:
       type: object
       properties:
@@ -388,18 +341,6 @@ components:
           type: boolean
         market_na:
           type: boolean
-    CardExpiration:
-      type: object
-      required:
-      - month
-      - year
-      properties:
-        month:
-          type: integer
-          format: int64
-        year:
-          type: integer
-          format: int64
     OrderAmount:
       type: object
       required:
@@ -412,6 +353,31 @@ components:
         subtotal:
           type: integer
           format: int64
+    CartItem:
+      type: object
+      required:
+      - id
+      - productVariantID
+      - quantity
+      - subtotal
+      properties:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    CartShipping:
+      type: object
+      properties:
+        service:
+          type: string
+        timeframe:
+          type: string
     InitView:
       type: object
       required:
@@ -463,32 +429,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/App'
-    OrderItem:
+    OrderTracking:
       type: object
-      required:
-      - id
-      - amount
-      - quantity
       properties:
-        id:
+        number:
           type: string
-        amount:
-          type: integer
-          format: int64
-        quantity:
-          type: integer
-          format: int64
-        description:
+        service:
           type: string
-        productVariantID:
+        status:
           type: string
-    CartItem:
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
+          type: string
+    Subscription:
       type: object
       required:
       - id
       - productVariantID
       - quantity
-      - subtotal
+      - addressID
+      - cardID
+      - created
+      - price
       properties:
         id:
           type: string
@@ -497,9 +469,37 @@ components:
         quantity:
           type: integer
           format: int64
-        subtotal:
+        addressID:
+          type: string
+        cardID:
+          type: string
+        created:
+          type: string
+        price:
           type: integer
           format: int64
+          description: Price of the subscription line in cents.
+        next:
+          type: string
+          description: Next scheduled order date.
+        schedule:
+          $ref: '#/components/schemas/SubscriptionSchedule'
+    App:
+      type: object
+      required:
+      - id
+      - name
+      - redirectURI
+      - secret
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        redirectURI:
+          type: string
+        secret:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

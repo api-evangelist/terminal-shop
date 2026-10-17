@@ -137,6 +137,13 @@ paths:
                   data:
                     type: string
 components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     SubscriptionInput:
       type: object
@@ -216,13 +223,6 @@ components:
           description: Next scheduled order date.
         schedule:
           $ref: '#/components/schemas/SubscriptionSchedule'
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

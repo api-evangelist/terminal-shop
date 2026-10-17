@@ -120,6 +120,13 @@ paths:
                   data:
                     type: string
 components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     App:
       type: object
@@ -137,13 +144,6 @@ components:
           type: string
         secret:
           type: string
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -60,7 +60,44 @@ paths:
                   data:
                     $ref: '#/components/schemas/Product'
 components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    Product:
+      type: object
+      required:
+      - id
+      - name
+      - description
+      - variants
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        variants:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVariant'
+        order:
+          type: integer
+          format: int64
+          description: Sort order of the product.
+        subscription:
+          type: string
+          enum:
+          - allowed
+          - required
+          description: Whether subscriptions are allowed or required for this product.
+        tags:
+          $ref: '#/components/schemas/ProductTags'
     ProductVariant:
       type: object
       required:
@@ -94,43 +131,6 @@ components:
           type: boolean
         market_na:
           type: boolean
-    Product:
-      type: object
-      required:
-      - id
-      - name
-      - description
-      - variants
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        variants:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductVariant'
-        order:
-          type: integer
-          format: int64
-          description: Sort order of the product.
-        subscription:
-          type: string
-          enum:
-          - allowed
-          - required
-          description: Whether subscriptions are allowed or required for this product.
-        tags:
-          $ref: '#/components/schemas/ProductTags'
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

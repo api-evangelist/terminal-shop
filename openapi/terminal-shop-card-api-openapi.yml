@@ -137,7 +137,26 @@ paths:
                   data:
                     type: string
 components:
+  parameters:
+    PathID:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
+    CardExpiration:
+      type: object
+      required:
+      - month
+      - year
+      properties:
+        month:
+          type: integer
+          format: int64
+        year:
+          type: integer
+          format: int64
     Card:
       type: object
       required:
@@ -157,25 +176,6 @@ components:
           type: string
         expiration:
           $ref: '#/components/schemas/CardExpiration'
-    CardExpiration:
-      type: object
-      required:
-      - month
-      - year
-      properties:
-        month:
-          type: integer
-          format: int64
-        year:
-          type: integer
-          format: int64
-  parameters:
-    PathID:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   securitySchemes:
     bearerAuth:
       type: http

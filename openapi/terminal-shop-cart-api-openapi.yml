@@ -174,12 +174,112 @@ paths:
                     $ref: '#/components/schemas/Order'
 components:
   schemas:
+    OrderAmount:
+      type: object
+      required:
+      - shipping
+      - subtotal
+      properties:
+        shipping:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
+    Cart:
+      type: object
+      required:
+      - items
+      - subtotal
+      - amount
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CartItem'
+        subtotal:
+          type: integer
+          format: int64
+          description: Subtotal of the items in the cart, in cents.
+        amount:
+          $ref: '#/components/schemas/CartAmount'
+        addressID:
+          type: string
+        cardID:
+          type: string
+        shipping:
+          $ref: '#/components/schemas/CartShipping'
+    OrderShipping:
+      type: object
+      required:
+      - city
+      - country
+      - name
+      - street1
+      - zip
+      properties:
+        city:
+          type: string
+        country:
+          type: string
+        name:
+          type: string
+        street1:
+          type: string
+        street2:
+          type: string
+        zip:
+          type: string
+        province:
+          type: string
+        phone:
+          type: string
+    CartItem:
+      type: object
+      required:
+      - id
+      - productVariantID
+      - quantity
+      - subtotal
+      properties:
+        id:
+          type: string
+        productVariantID:
+          type: string
+        quantity:
+          type: integer
+          format: int64
+        subtotal:
+          type: integer
+          format: int64
     CartShipping:
       type: object
       properties:
         service:
           type: string
         timeframe:
+          type: string
+    OrderTracking:
+      type: object
+      properties:
+        number:
+          type: string
+        service:
+          type: string
+        status:
+          type: string
+          enum:
+          - PRE_TRANSIT
+          - TRANSIT
+          - DELIVERED
+          - RETURNED
+          - FAILURE
+          - UNKNOWN
+        statusDetails:
+          type: string
+        statusUpdatedAt:
+          type: string
+        url:
           type: string
     Order:
       type: object
@@ -208,102 +308,6 @@ components:
         index:
           type: integer
           format: int64
-    Cart:
-      type: object
-      required:
-      - items
-      - subtotal
-      - amount
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/CartItem'
-        subtotal:
-          type: integer
-          format: int64
-          description: Subtotal of the items in the cart, in cents.
-        amount:
-          $ref: '#/components/schemas/CartAmount'
-        addressID:
-          type: string
-        cardID:
-          type: string
-        shipping:
-          $ref: '#/components/schemas/CartShipping'
-    OrderTracking:
-      type: object
-      properties:
-        number:
-          type: string
-        service:
-          type: string
-        status:
-          type: string
-          enum:
-          - PRE_TRANSIT
-          - TRANSIT
-          - DELIVERED
-          - RETURNED
-          - FAILURE
-          - UNKNOWN
-        statusDetails:
-          type: string
-        statusUpdatedAt:
-          type: string
-        url:
-          type: string
-    OrderShipping:
-      type: object
-      required:
-      - city
-      - country
-      - name
-      - street1
-      - zip
-      properties:
-        city:
-          type: string
-        country:
-          type: string
-        name:
-          type: string
-        street1:
-          type: string
-        street2:
-          type: string
-        zip:
-          type: string
-        province:
-          type: string
-        phone:
-          type: string
-    OrderAmount:
-      type: object
-      required:
-      - shipping
-      - subtotal
-      properties:
-        shipping:
-          type: integer
-          format: int64
-        subtotal:
-          type: integer
-          format: int64
-    CartAmount:
-      type: object
-      required:
-      - subtotal
-      properties:
-        subtotal:
-          type: integer
-          format: int64
-        shipping:
-          type: integer
-          format: int64
-        total:
-          type: integer
-          format: int64
     OrderItem:
       type: object
       required:
@@ -323,22 +327,18 @@ components:
           type: string
         productVariantID:
           type: string
-    CartItem:
+    CartAmount:
       type: object
       required:
-      - id
-      - productVariantID
-      - quantity
       - subtotal
       properties:
-        id:
-          type: string
-        productVariantID:
-          type: string
-        quantity:
+        subtotal:
           type: integer
           format: int64
-        subtotal:
+        shipping:
+          type: integer
+          format: int64
+        total:
           type: integer
           format: int64
   securitySchemes:
