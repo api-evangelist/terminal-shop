@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/terminal-shop/integrations
 - https://zapier.com/apps/terminal/integrations
@@ -12,7 +12,25 @@ checked:
 - https://n8n.io/integrations/terminal-shop/
 - https://zapier.com/apps/terminal-shop/integrations
 - https://zapier.com/apps/terminal/integrations
+- raycast/integrations/raycast-integration-edges.yml
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Raycast (raycast-store)
+  partner: raycast
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: raycast-store
+  evidence: https://www.raycast.com/terminaldotshop/terminaldotshop
+  mirror_of: raycast/integrations/raycast-integration-edges.yml
+  apps:
+  - Terminal Shop
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Raycast Store extension (first-party)
 templates: []
