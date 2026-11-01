@@ -1,4 +1,4 @@
-# Terminal (terminal-shop)
+# Terminal
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,177 +66,135 @@
 
 Terminal is a developer-focused coffee company with an API-first, SSH-first ordering experience. The Terminal Shop API is a public REST API (Bearer token) for browsing coffee products, managing carts, placing orders, running subscriptions, and handling addresses, cards, and profiles - the same surface that powers the famous `ssh terminal.shop` storefront.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/terminal-shop/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/terminal-shop/refs/heads/main/apis.yml)
+**Areas:** Coffee · E-Commerce · Developers · SSH · Ordering
 
-## The `ssh terminal.shop` Experience
+## Terminal on APIs.io
 
-Terminal is best known for letting you buy coffee straight from your terminal: run `ssh terminal.shop` and a full TUI storefront opens over SSH. That same storefront is backed by the public Terminal Shop REST API documented here, along with official Stainless-generated SDKs (Go, JavaScript/TypeScript, Python, Java, Kotlin, Ruby) and a Terraform provider. The API serves a production environment at `https://api.terminal.shop` and a dev sandbox at `https://api.dev.terminal.shop` that places test orders without real charges.
+Everything profiled for Terminal is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/terminal-shop/](https://apis.io/providers/terminal-shop/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (11)
 
-- Coffee
-- E-Commerce
-- Developer
-- SSH
-- Ordering
+- [Terminal Address API](https://apis.io/apis/terminal-shop/terminal-shop-address-api/) — The Address API from Terminal — 2 operation(s) for address.
+- [Terminal App API](https://apis.io/apis/terminal-shop/terminal-shop-app-api/) — The App API from Terminal — 2 operation(s) for app.
+- [Terminal Card API](https://apis.io/apis/terminal-shop/terminal-shop-card-api/) — The Card API from Terminal — 3 operation(s) for card.
+- [Terminal Cart API](https://apis.io/apis/terminal-shop/terminal-shop-cart-api/) — The Cart API from Terminal — 5 operation(s) for cart.
+- [Terminal Email API](https://apis.io/apis/terminal-shop/terminal-shop-email-api/) — The Email API from Terminal — 1 operation(s) for email.
+- [Terminal Order API](https://apis.io/apis/terminal-shop/terminal-shop-order-api/) — The Order API from Terminal — 2 operation(s) for order.
+- [Terminal Product API](https://apis.io/apis/terminal-shop/terminal-shop-product-api/) — The Product API from Terminal — 2 operation(s) for product.
+- [Terminal Profile API](https://apis.io/apis/terminal-shop/terminal-shop-profile-api/) — The Profile API from Terminal — 1 operation(s) for profile.
+- [Terminal Subscription API](https://apis.io/apis/terminal-shop/terminal-shop-subscription-api/) — The Subscription API from Terminal — 2 operation(s) for subscription.
+- [Terminal Token API](https://apis.io/apis/terminal-shop/terminal-shop-token-api/) — The Token API from Terminal — 2 operation(s) for token.
+- [Terminal View API](https://apis.io/apis/terminal-shop/terminal-shop-view-api/) — The View API from Terminal — 1 operation(s) for view.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Terminal Products API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Lists Terminal's coffee products and their purchasable variants, with pricing (in cents), market availability, and subscription eligibility.
+- [Terminal Shop Agentic Access](https://apis.io/agentic-access/terminal-shop/terminal-shop-agentic-access/)
 
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
+#### Collections (12)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Products
-- Catalog
-- Coffee
+- [Terminal Shop API](https://apis.io/collections/terminal-shop/open-terminal-shop/)
+- [Terminal Shop Address API](https://apis.io/collections/terminal-shop/open-terminal-shop-address-api/)
+- [Terminal Shop Address App API](https://apis.io/collections/terminal-shop/open-terminal-shop-app-api/)
+- [Terminal Shop Address Card API](https://apis.io/collections/terminal-shop/open-terminal-shop-card-api/)
+- [Terminal Shop Address Cart API](https://apis.io/collections/terminal-shop/open-terminal-shop-cart-api/)
+- [Terminal Shop Address Email API](https://apis.io/collections/terminal-shop/open-terminal-shop-email-api/)
+- [Terminal Shop Address Order API](https://apis.io/collections/terminal-shop/open-terminal-shop-order-api/)
+- [Terminal Shop Address Product API](https://apis.io/collections/terminal-shop/open-terminal-shop-product-api/)
+- [Terminal Shop Address Profile API](https://apis.io/collections/terminal-shop/open-terminal-shop-profile-api/)
+- [Terminal Shop Address Subscription API](https://apis.io/collections/terminal-shop/open-terminal-shop-subscription-api/)
+- [Terminal Shop Address Token API](https://apis.io/collections/terminal-shop/open-terminal-shop-token-api/)
+- [Terminal Shop Address View API](https://apis.io/collections/terminal-shop/open-terminal-shop-view-api/)
 
-#### Properties
+#### Security (2)
 
-- [Documentation](https://www.terminal.shop/api)
-- [API Reference](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Terminal Cart API
+- [Terminal Shop Authentication](https://apis.io/security/terminal-shop/terminal-shop-authentication/)
+- [Terminal Shop Domain Security](https://apis.io/security/terminal-shop/terminal-shop-domain-security/)
 
-Manages the current user's cart - set item quantities, attach a shipping address and card, clear the cart, and convert it into an order at checkout.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
+Published plans, tiers and prices.
 
-#### Tags
+- [Terminal Shop Plans Pricing](https://apis.io/plans/terminal-shop/terminal-shop-plans-pricing/)
 
-- Cart
-- Checkout
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Terminal Shop Rate Limits](https://apis.io/rate-limits/terminal-shop/terminal-shop-rate-limits/)
 
-### Terminal Orders API
+#### FinOps (1)
 
-Creates orders directly (bypassing the cart), lists past orders, and retrieves a single order with amounts, line items, shipping, and carrier tracking.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
+- [Terminal Shop Finops](https://apis.io/finops/terminal-shop/terminal-shop-finops/)
 
-#### Tags
+## Where to find this API
 
-- Orders
-- Fulfillment
-- Tracking
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Terminal Subscriptions API
-
-Creates and manages recurring coffee subscriptions on fixed or weekly schedules, tied to a product variant, address, and card.
-
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
-
-#### Tags
-
-- Subscriptions
-- Recurring
-
-#### Properties
-
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Terminal Addresses & Cards API
-
-Manages saved shipping addresses and Stripe-tokenized payment cards for the current user, including a hosted card-collection flow.
-
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
-
-#### Tags
-
-- Addresses
-- Cards
-- Payment
-
-#### Properties
-
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Terminal Profile API
-
-Reads and updates the current user's profile (name and email) and surfaces a single aggregate view of all account state via `/view/init`.
-
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
-
-#### Tags
-
-- Profile
-- User
-- Account
-
-#### Properties
-
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Terminal Tokens & Apps API
-
-Manages personal access tokens used as Bearer credentials and registers OAuth apps (client ID/secret and redirect URI) for third-party integrations.
-
-- **Human URL:** [https://www.terminal.shop/api](https://www.terminal.shop/api)
-- **Base URL:** `https://api.terminal.shop`
-
-#### Tags
-
-- Tokens
-- OAuth
-- Apps
-
-#### Properties
-
-- [Documentation](https://www.terminal.shop/api)
-- [OpenAPI](openapi/terminal-shop-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/terminal-shop.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/terminal-shop.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/terminaldotshop)
-- [LinkedIn](https://www.linkedin.com/company/terminalshop)
 - [Website](https://www.terminal.shop)
 - [Documentation](https://www.terminal.shop/api)
-- [Plans](plans/terminal-shop-plans-pricing.yml)
-- [Rate Limits](rate-limits/terminal-shop-rate-limits.yml)
-- [Fin Ops](finops/terminal-shop-finops.yml)
+- [GitHub](https://github.com/terminaldotshop)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.5** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 49.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/terminal-shop/](https://apis.io/providers/terminal-shop/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Terminal: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/terminal-shop/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
